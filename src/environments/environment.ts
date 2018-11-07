@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  host: 'http://marblejs-example.herokuapp.com',
+  apiVersion: 'v1',
 };
 
 /*

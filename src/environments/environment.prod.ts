@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  host: 'http://marblejs-example.herokuapp.com',
+  apiVersion: 'v1',
 };
