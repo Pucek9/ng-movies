@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -7,6 +7,15 @@ import {environment} from '../../environments/environment';
 import { User } from '../models';
 
 const apiBase = `${environment.host}/api/${environment.apiVersion}`;
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Headers': 'Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With',
+    // 'Access-Control-Allow-Methods': 'GET, PUT, POST'
+  })
+};
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -23,7 +32,7 @@ export class AuthenticationService {
   }
 
   login(login: string, password: string) {
-    return this.http.post<any>(`${apiBase}/auth/login`, { login, password })
+    return this.http.post<any>(`${apiBase}/auth/login`, { login, password }, httpOptions)
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
