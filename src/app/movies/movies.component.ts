@@ -13,7 +13,7 @@ import {AuthenticationService, MoviesService} from '../services';
 export class MoviesComponent implements OnInit, OnDestroy {
   currentUser: User;
   currentUserSubscription: Subscription;
-  movies: Movie[] = [];
+  movies;
 
   constructor(
     private authenticationService: AuthenticationService,

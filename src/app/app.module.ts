@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login';
 import { MoviesComponent } from './movies';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MoviesComponent
+    MoviesComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

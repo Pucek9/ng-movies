@@ -6,17 +6,6 @@ import {map} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
 import {User} from '../models';
 
-const apiBase = `${environment.host}/api/${environment.apiVersion}`;
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'GET, PUT, POST, OPTIONS',
-    'Access-Control-Allow-Credentials': 'true'
-  })
-};
-
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
@@ -32,16 +21,15 @@ export class AuthenticationService {
   }
 
   login(login: string, password: string) {
-    console.log(httpOptions);
-    return this.http.post<any>(`${apiBase}/auth/login`, {login, password}) // , httpOptions)
+    return this.http.post<any>(`${environment.apiURL}/auth/login`, {login, password})
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
+          console.log(user.token)
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
         }
-
         return user;
       }));
   }

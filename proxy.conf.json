@@ -1,9 +1,0 @@
-{
-  "/proxy/*": {
-    "target": "http://localhost:4200",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug",
-    "pathRewrite": {"^/api" : "http://marblejs-example.herokuapp.com"}
-  }
-}
