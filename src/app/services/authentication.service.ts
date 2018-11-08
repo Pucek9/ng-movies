@@ -1,23 +1,23 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 import {environment} from '../../environments/environment';
-import { User } from '../models';
+import {User} from '../models';
 
 const apiBase = `${environment.host}/api/${environment.apiVersion}`;
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
     'Access-Control-Allow-Origin': '*',
-    // 'Access-Control-Allow-Headers': 'Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With',
-    // 'Access-Control-Allow-Methods': 'GET, PUT, POST'
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET, PUT, POST, OPTIONS',
+    'Access-Control-Allow-Credentials': 'true'
   })
 };
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
@@ -32,7 +32,8 @@ export class AuthenticationService {
   }
 
   login(login: string, password: string) {
-    return this.http.post<any>(`${apiBase}/auth/login`, { login, password }, httpOptions)
+    console.log(httpOptions);
+    return this.http.post<any>(`${apiBase}/auth/login`, {login, password}) // , httpOptions)
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
