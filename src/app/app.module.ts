@@ -1,20 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login';
-import { MoviesComponent } from './movies';
-import { HeaderComponent } from './header/header.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {LoginComponent} from './login';
+import {MoviesComponent} from './movies';
+import {HeaderComponent} from './header';
+import {MovieComponent} from './movie';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MoviesComponent,
-    HeaderComponent
+    HeaderComponent,
+    MovieComponent
   ],
   imports: [
     BrowserModule,
@@ -25,4 +27,5 @@ import { HeaderComponent } from './header/header.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

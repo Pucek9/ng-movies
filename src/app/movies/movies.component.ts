@@ -13,7 +13,7 @@ import {AuthenticationService, MoviesService} from '../services';
 export class MoviesComponent implements OnInit, OnDestroy {
   currentUser: User;
   currentUserSubscription: Subscription;
-  movies;
+  movies: Movie[];
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -34,8 +34,8 @@ export class MoviesComponent implements OnInit, OnDestroy {
   }
 
   private loadAllMovies() {
-    this.moviesService.getAll().pipe(first()).subscribe(movies => {
-      this.movies = movies;
+    this.moviesService.getAll().pipe(first()).subscribe((movies: object) => {
+      this.movies = movies.collection;
     });
   }
 }

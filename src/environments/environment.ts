@@ -5,6 +5,6 @@ const
   apiURL = `${allowCorsWorkaround}/${host}/api/${apiVersion}`;
 
 export const environment = {
-  production: true,
+  production: false,
   apiURL
 };
