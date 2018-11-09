@@ -1,1 +1,6 @@
-<input *ngIf="isLogged()" type="button" value="Logout" (click)="logout()">
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" routerLink="/">Home</a>
+    <a *ngIf="isLogged()" class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
+</nav>

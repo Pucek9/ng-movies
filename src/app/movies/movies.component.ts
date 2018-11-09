@@ -35,6 +35,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
   private loadAllMovies() {
     this.moviesService.getAll().pipe(first()).subscribe((movies: object) => {
+      // @ts-ignore
       this.movies = movies.collection;
     });
   }
