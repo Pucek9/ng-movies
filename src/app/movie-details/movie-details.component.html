@@ -1,3 +1,10 @@
 <p>
-  movie-details works!
+  {{data.imdbId}}
+  {{data.title}}
+  {{data.director}}
+  <!--{{data.genres}}-->
+  {{data.year}}
+  {{data.metascore}}
+  <!--{{data.actors}}-->
+  <img [src]="data.posterUrl" [alt]="data.title">
 </p>
