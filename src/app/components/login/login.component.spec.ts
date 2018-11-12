@@ -18,17 +18,14 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      // imports: [RouterTestingModule],
       declarations: [LoginComponent],
       imports: [FormsModule, ReactiveFormsModule],
       providers: [
-        {
-          provide: Router, useValue: RouterTestingModule
-        }, {
-        provide: ActivatedRoute,
-        useValue: fakeActivatedRoute
-      }, {provide: AlertService, useValue: of()},
-        HttpClient, HttpHandler, ],
+        {provide: Router, useValue: RouterTestingModule},
+        {provide: ActivatedRoute, useValue: fakeActivatedRoute},
+        {provide: AlertService, useValue: of()},
+        HttpClient, HttpHandler,
+      ],
     })
       .compileComponents();
   }));

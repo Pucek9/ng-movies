@@ -2,6 +2,9 @@ import {TestBed, async} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 
 import {AppComponent} from './app.component';
+import {HeaderComponent} from './components/header';
+import {AlertComponent} from './components/alert';
+import {HttpClient, HttpHandler} from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -10,8 +13,11 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent, HeaderComponent, AlertComponent
       ],
+      providers: [
+        HttpClient, HttpHandler
+      ]
     }).compileComponents();
   }));
 
@@ -27,10 +33,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('movies');
   });
 
-  it('should render title in a h1 tag', () => {
+  it('should render header with home tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to movie-list-item-list!');
+    expect(compiled.querySelector('app-header').textContent).toContain('Home');
   });
 });

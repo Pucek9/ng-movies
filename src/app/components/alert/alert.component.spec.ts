@@ -1,6 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AlertComponent } from './alert.component';
+import {AlertComponent} from './alert.component';
+import {Router} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
+import {AlertService} from '../../services';
+import {of} from 'rxjs';
 
 describe('AlertComponent', () => {
   let component: AlertComponent;
@@ -8,9 +12,14 @@ describe('AlertComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlertComponent ]
+      declarations: [AlertComponent],
+      providers: [
+        {provide: Router, useValue: RouterTestingModule},
+        {provide: AlertService, useValue: {getMessage: () => of('Message')}},
+
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

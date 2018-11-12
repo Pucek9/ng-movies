@@ -1,16 +1,29 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MovieDetailsComponent } from './movie-details.component';
+import {MovieDetailsComponent} from './movie-details.component';
+import {ActivatedRoute} from '@angular/router';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {MoviesService} from '../../../services';
+import {of} from 'rxjs';
 
-describe('MovieListItemComponent', () => {
+describe('MovieDetailsComponent', () => {
   let component: MovieDetailsComponent;
   let fixture: ComponentFixture<MovieDetailsComponent>;
+  const fakeActivatedRoute = {
+    ...new ActivatedRoute(),
+    params: of({imdbId: 'test'})
+  } as ActivatedRoute;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MovieDetailsComponent ]
+      declarations: [MovieDetailsComponent],
+      providers: [
+        {provide: ActivatedRoute, useValue: fakeActivatedRoute},
+        {provide: MoviesService, useValue: {getById: () => of({})}},
+        HttpClient, HttpHandler
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
