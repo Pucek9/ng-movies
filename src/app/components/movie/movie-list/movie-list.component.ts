@@ -11,17 +11,17 @@ import {AuthenticationService, MoviesService} from '../../../services';
   styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit, OnDestroy {
-  currentUser: User;
-  currentUserSubscription: Subscription;
+  // currentUser: User;
+  // currentUserSubscription: Subscription;
   movies: Movie[];
 
   constructor(
-    private authenticationService: AuthenticationService,
+    // private authenticationService: AuthenticationService,
     private moviesService: MoviesService,
   ) {
-    this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
-      this.currentUser = user;
-    });
+    // this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+    //   this.currentUser = user;
+    // });
   }
 
   ngOnInit() {
@@ -30,7 +30,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
-    this.currentUserSubscription.unsubscribe();
+    // this.currentUserSubscription.unsubscribe();
   }
 
   private loadAllMovies() {
