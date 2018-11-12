@@ -8,6 +8,7 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './components/login';
 import {MovieListComponent, MovieDetailsComponent, MovieListItemComponent} from './components/movie';
 import {HeaderComponent, AlertComponent} from './components';
+import {AlertService} from './services';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import {HeaderComponent, AlertComponent} from './components';
     HttpClientModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

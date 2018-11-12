@@ -6,7 +6,7 @@ import {first} from 'rxjs/operators';
 import {
   AlertService,
   AuthenticationService
-} from '../../services/index';
+} from '../../services';
 
 @Component({
   selector: 'app-login',
@@ -63,7 +63,6 @@ export class LoginComponent implements OnInit {
           this.router.navigate([this.returnUrl]);
         },
         response => {
-          console.log(response.message)
           this.alertService.error(response.message);
           this.loading = false;
         });

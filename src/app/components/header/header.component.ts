@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
+import {User} from '../../models';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ export class HeaderComponent implements OnInit {
   logoutEvent = new EventEmitter<string>();
 
   @Input()
-  user;
+  user: User;
 
   logout() {
     this.logoutEvent.emit();
