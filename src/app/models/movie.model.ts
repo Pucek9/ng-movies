@@ -1,4 +1,4 @@
-import {Actor} from './actor';
+import {Actor} from './actor.model';
 
 export class Movie {
   _id: string;

@@ -1,24 +1,23 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {LoginComponent} from './login';
-import {MoviesComponent} from './movies';
-import {MovieDetailsComponent} from './movie-details';
-import {HeaderComponent, MovieComponent, AlertComponent} from './components';
+import {LoginComponent} from './components/login';
+import {MovieListComponent, MovieDetailsComponent, MovieListItemComponent} from './components/movie';
+import {HeaderComponent, AlertComponent} from './components';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MoviesComponent,
     HeaderComponent,
-    MovieComponent,
+    AlertComponent,
+    MovieListItemComponent,
+    MovieListComponent,
     MovieDetailsComponent,
-    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +25,7 @@ import {HeaderComponent, MovieComponent, AlertComponent} from './components';
     ReactiveFormsModule,
     HttpClientModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -2,15 +2,15 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {first} from 'rxjs/operators';
 
-import {Movie, User} from '../models';
-import {AuthenticationService, MoviesService} from '../services';
+import {Movie, User} from '../../../models';
+import {AuthenticationService, MoviesService} from '../../../services';
 
 @Component({
-  selector: 'app-movies',
-  templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.scss']
+  selector: 'app-movie-list',
+  templateUrl: './movie-list.component.html',
+  styleUrls: ['./movie-list.component.scss']
 })
-export class MoviesComponent implements OnInit, OnDestroy {
+export class MovieListComponent implements OnInit, OnDestroy {
   currentUser: User;
   currentUserSubscription: Subscription;
   movies: Movie[];

@@ -6,7 +6,7 @@ import {first} from 'rxjs/operators';
 import {
   AlertService,
   AuthenticationService
-} from '../services';
+} from '../../services/index';
 
 @Component({
   selector: 'app-login',

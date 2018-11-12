@@ -1,3 +1,3 @@
-export * from './user';
-export * from './movie';
-export * from './actor';
+export * from './user.model';
+export * from './movie.model';
+export * from './actor.model';
