@@ -22,8 +22,8 @@ export class MoviesService {
     };
   }
 
-  getAll() {
-    return this.http.get(`${environment.apiURL}/movie`, this.httpOptions);
+  getAll(limit, page, sortBy, sortDir) {
+    return this.http.get(`${environment.apiURL}/movie`, {...this.httpOptions, params: {limit, page, sortBy, sortDir}});
   }
 
   getById(imdbId: string) {
