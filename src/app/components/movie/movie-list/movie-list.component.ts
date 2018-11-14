@@ -32,7 +32,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
   private loadAllMovies() {
-    this.moviesService.getAll().pipe(first()).subscribe((movies: object) => {
+    this.moviesService.getAll().subscribe((movies: object) => {
       // @ts-ignore
       this.movies = movies.collection;
     });
@@ -40,6 +40,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
 
   public changeSortDir() {
     this.order = !this.order;
-    this.store.dispatch(new fromAction.SetSortDir(this.order? 1 : -1));
+    this.store.dispatch(new fromAction.SetSortDir(this.order ? 1 : -1));
   }
 }

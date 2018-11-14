@@ -24,7 +24,7 @@ export class MoviesService {
       'Content-Type': 'application/json',
       'Authorization': authenticationService.currentUserValue && authenticationService.currentUserValue.token
     });
-    // this.store.pipe(select(first())).subscribe(state => {
+    // this.store.pipe(first()).subscribe(state => {
     this.store.pipe(select(state => state[0])).subscribe(state => {
       this.params = state;
     });
