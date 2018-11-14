@@ -8,11 +8,12 @@ import {EffectsModule} from '@ngrx/effects';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './components/login';
-import {MovieListComponent, MovieDetailsComponent, MovieListItemComponent} from './components/movie';
+import {MovieListComponent, MovieDetailsComponent} from './components/movie';
 import {HeaderComponent, AlertComponent} from './components';
 import {AlertService} from './services';
 import {MovieListReducer} from './store/movie-list/movie-list.reducer';
 import {MovieListEffects} from './store/movie-list/movie-list.effects';
+import { DataGridComponent } from './components/data-grid/data-grid.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,9 @@ import {MovieListEffects} from './store/movie-list/movie-list.effects';
     LoginComponent,
     HeaderComponent,
     AlertComponent,
-    MovieListItemComponent,
     MovieListComponent,
     MovieDetailsComponent,
+    DataGridComponent,
   ],
   imports: [
     BrowserModule,

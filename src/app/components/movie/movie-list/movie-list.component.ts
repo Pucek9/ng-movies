@@ -13,7 +13,9 @@ import * as fromAction from '../../../store/movie-list/movie-list.actions';
   styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit, OnDestroy {
+
   movies: Movie[];
+  headElements = ['ImdbId', 'Title', 'Year', 'Metascore'];
   order = true;
 
   constructor(

@@ -1,0 +1,15 @@
+<table class="z-depth-1">
+  <thead>
+  <tr>
+    <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let el of elements; let i = index">
+    <td><a [routerLink]="['/details/'+el.imdbId]">{{el.imdbId}}</a></td>
+    <td>{{el.title}}</td>
+    <td>{{el.year}}</td>
+    <td>{{el.metascore}}</td>
+  </tr>
+  </tbody>
+</table>

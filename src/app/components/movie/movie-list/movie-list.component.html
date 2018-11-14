@@ -1,2 +1,2 @@
 <input type="button" (click)="changeSortDir()">
-<app-movie-list-item *ngFor="let movie of movies" [data]="movie"></app-movie-list-item>
+<app-data-grid [elements]="movies" [headElements]="headElements"></app-data-grid>

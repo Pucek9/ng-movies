@@ -1,11 +1,11 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MovieListComponent} from './movie-list.component';
-import {MovieListItemComponent} from '../movie-list-item';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {MoviesService} from '../../../services';
 import {of} from 'rxjs';
+import {DataGridComponent} from '../../data-grid/data-grid.component';
 
 describe('MovieListComponent', () => {
   let component: MovieListComponent;
@@ -14,7 +14,7 @@ describe('MovieListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [MovieListComponent, MovieListItemComponent],
+      declarations: [MovieListComponent, DataGridComponent],
       providers: [
         {provide: MoviesService, useValue: {getAll : () => of([])}},
         HttpClient, HttpHandler]
