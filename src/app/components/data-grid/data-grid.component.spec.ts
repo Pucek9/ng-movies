@@ -1,6 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Store} from '@ngrx/store';
 
-import { DataGridComponent } from './data-grid.component';
+import {DataGridComponent} from './data-grid.component';
+import {initializeRootState} from '../../store/root/root.state';
+import {MockStore} from '../../store/mock.store';
+
+
 
 describe('DataGridComponent', () => {
   let component: DataGridComponent;
@@ -8,9 +14,11 @@ describe('DataGridComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DataGridComponent ]
+      imports: [RouterTestingModule],
+      providers: [{provide: Store, useValue: new MockStore(initializeRootState())}],
+      declarations: [DataGridComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
