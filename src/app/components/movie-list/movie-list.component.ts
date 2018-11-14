@@ -1,9 +1,11 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 
-import {Movie} from '../../models/index';
-import {MovieListState} from '../../store/movie-list/movie-list.state';
-import * as fromAction from '../../store/movie-list/movie-list.actions';
+import {Observable} from 'rxjs';
+import {Movie} from '../../models';
+import {MoviesState} from '../../store/movies/movies.state';
+import * as moviesActions from '../../store/movies/movies.actions';
+import {moviesCollectionSelector} from '../../store/movies/movies.reducer';
 
 @Component({
   selector: 'app-movie-list',
@@ -12,12 +14,11 @@ import * as fromAction from '../../store/movie-list/movie-list.actions';
 })
 export class MovieListComponent implements OnInit, OnDestroy {
 
-  movies: { collection: Movie[], totals: number } = {collection: [], totals: 0};
+  movies$: Observable<Movie>;
   headElements = ['ImdbId', 'Title', 'Year', 'Metascore'];
-  order = true;
 
   constructor(
-    private store: Store<MovieListState>
+    private store$: Store<MoviesState>
   ) {
   }
 
@@ -29,14 +30,8 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
   private loadAllMovies() {
-    this.store.dispatch(new fromAction.GetMovieList());
-    this.store.pipe(select(state => state[0])).subscribe(state => {
-      this.movies = state && state.movies;
-    });
+    this.store$.dispatch(new moviesActions.GetMovieList()); // TODO should be initialized by route effect
+    this.movies$ = this.store$.pipe(select(moviesCollectionSelector));
   }
 
-  public changeSortDir() {
-    this.order = !this.order;
-    this.store.dispatch(new fromAction.SetSortDir(this.order ? 1 : -1));
-  }
 }

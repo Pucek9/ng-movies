@@ -4,14 +4,15 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './components/login';
 import {MovieListComponent, MovieDetailsComponent, HeaderComponent, AlertComponent} from './components';
 import {AlertService} from './services';
-import {MovieListReducer} from './store/movie-list/movie-list.reducer';
-import {MovieListEffects} from './store/movie-list/movie-list.effects';
+import {rootReducer} from './store/root/root.reducer';
+import {RootEffects} from './store/root/root.effects';
 import {DataGridComponent} from './components/data-grid/data-grid.component';
 
 @NgModule({
@@ -29,8 +30,9 @@ import {DataGridComponent} from './components/data-grid/data-grid.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot([MovieListReducer]),
-    EffectsModule.forRoot([MovieListEffects]),
+    StoreDevtoolsModule.instrument({maxAge: 10}),
+    StoreModule.forRoot([rootReducer]),
+    EffectsModule.forRoot([RootEffects]),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [AlertService],

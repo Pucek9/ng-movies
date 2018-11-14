@@ -1,4 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+
+import * as paramsActions from '../../store/params/params.actions';
+import {ParamsState} from '../../store/params/params.state';
 
 @Component({
   selector: 'app-data-grid',
@@ -12,10 +16,19 @@ export class DataGridComponent implements OnInit {
   @Input()
   elements: any[];
 
-  constructor() {
+  order = true;
+
+  constructor(
+    private store$: Store<ParamsState>
+  ) {
   }
 
   ngOnInit() {
+  }
+
+  public changeSortDir() {
+    this.order = !this.order;
+    this.store$.dispatch(new paramsActions.SetSortDir(this.order ? 1 : -1));
   }
 
 }
