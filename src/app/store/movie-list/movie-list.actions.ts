@@ -1,4 +1,5 @@
 import {Action} from '@ngrx/store';
+import {Movie} from '../../models';
 
 export const SET_LIMIT = '[Movies] SET_LIMIT';
 
@@ -7,6 +8,10 @@ export const SET_PAGE = '[Movies] SET_PAGE';
 export const SET_SORT_BY = '[Movies] SET_SORT_BY';
 
 export const SET_SORT_DIR = '[Movies] SET_SORT_DIR';
+
+export const GET_MOVIE_LIST = '[Movies] GET_MOVIE_LIST';
+
+export const GET_ERROR = '[Movies] GET_ERROR';
 
 
 export class SetLimit implements Action {
@@ -41,4 +46,18 @@ export class SetSortDir implements Action {
 
 }
 
-export type All = SetLimit | SetPage | SetSortBy | SetSortDir;
+export class GetMovieList implements Action {
+  readonly type = GET_MOVIE_LIST;
+  constructor(public payload: any) {
+  }
+
+}
+
+export class GetError implements Action {
+  readonly type = GET_ERROR;
+  constructor() {
+  }
+
+}
+
+export type MovieListActions = SetLimit | SetPage | SetSortBy | SetSortDir | GetMovieList | GetError;

@@ -1,8 +1,11 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Store} from '@ngrx/store';
 import {first} from 'rxjs/operators';
 
-import {Movie, User} from '../../../models';
+import {Movie} from '../../../models';
 import {MoviesService} from '../../../services';
+import {MovieListState} from '../../../store/movie-list/movie-list.state';
+import * as fromAction from '../../../store/movie-list/movie-list.actions';
 
 @Component({
   selector: 'app-movie-list',
@@ -11,9 +14,11 @@ import {MoviesService} from '../../../services';
 })
 export class MovieListComponent implements OnInit, OnDestroy {
   movies: Movie[];
+  order = true;
 
   constructor(
     private moviesService: MoviesService,
+    private store: Store<MovieListState>
   ) {
   }
 
@@ -29,5 +34,10 @@ export class MovieListComponent implements OnInit, OnDestroy {
       // @ts-ignore
       this.movies = movies.collection;
     });
+  }
+
+  public changeSortDir() {
+    this.order = !this.order;
+    this.store.dispatch(new fromAction.SetSortDir(this.order? 1 : -1));
   }
 }

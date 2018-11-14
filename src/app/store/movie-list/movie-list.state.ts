@@ -9,7 +9,7 @@ export interface MovieListState {
 
 export const initializeMovieListState = function () {
   return {
-    limit: 5,
+    limit: 0,
     page: 1,
     sortBy: '_id',
     sortDir: 1,

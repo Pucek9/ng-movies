@@ -1,11 +1,11 @@
 import {MovieListState, initializeMovieListState} from './movie-list.state';
-import * as MoviesAction from './movie-list.action';
+import * as MoviesAction from './movie-list.actions';
 
-export type Action = MoviesAction.All;
+export type Action = MoviesAction.MovieListActions;
 
 const defaultState: MovieListState = initializeMovieListState();
 
-export function MovieReducer(state = defaultState, action: Action) {
+export function MovieListReducer(state = defaultState, action: Action) {
   console.log(state, action);
 
   switch (action.type) {
@@ -43,6 +43,22 @@ export function MovieReducer(state = defaultState, action: Action) {
       return {
         ...state,
         sortDir: action.payload,
+      };
+
+    }
+
+    case MoviesAction.GET_MOVIE_LIST: {
+
+      return {
+        ...state,
+      };
+
+    }
+
+    case MoviesAction.GET_ERROR: {
+
+      return {
+        ...state,
       };
 
     }
