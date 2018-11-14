@@ -3,7 +3,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MovieDetailsComponent} from './movie-details.component';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient, HttpHandler} from '@angular/common/http';
-import {MoviesService} from '../../../services';
+import {MoviesService} from '../../services/index';
 import {of} from 'rxjs';
 
 describe('MovieDetailsComponent', () => {

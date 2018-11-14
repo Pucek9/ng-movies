@@ -8,12 +8,11 @@ import {EffectsModule} from '@ngrx/effects';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './components/login';
-import {MovieListComponent, MovieDetailsComponent} from './components/movie';
-import {HeaderComponent, AlertComponent} from './components';
+import {MovieListComponent, MovieDetailsComponent, HeaderComponent, AlertComponent} from './components';
 import {AlertService} from './services';
 import {MovieListReducer} from './store/movie-list/movie-list.reducer';
 import {MovieListEffects} from './store/movie-list/movie-list.effects';
-import { DataGridComponent } from './components/data-grid/data-grid.component';
+import {DataGridComponent} from './components/data-grid/data-grid.component';
 
 @NgModule({
   declarations: [

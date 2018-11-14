@@ -7,7 +7,10 @@ export interface MovieListState {
     sortBy: '_id' | 'title' | 'director' | 'year' | 'metascore';
     sortDir: -1 | 1;
   };
-  movies: Movie[];
+  movies: {
+    collection: Movie[];
+    totals: number;
+  };
 }
 
 export const initializeMovieListState = function () {
@@ -18,7 +21,10 @@ export const initializeMovieListState = function () {
       sortBy: '_id',
       sortDir: 1,
     },
-    movies: []
+    movies: {
+      collection: [],
+      totals: 0
+    }
   } as MovieListState;
 };
 

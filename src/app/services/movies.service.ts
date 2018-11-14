@@ -6,7 +6,6 @@ import {environment} from '../../environments/environment';
 import {AuthenticationService} from './authentication.service';
 import {MovieListState} from '../store/movie-list/movie-list.state';
 import {select, Store} from '@ngrx/store';
-import {first} from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class MoviesService {
@@ -24,7 +23,6 @@ export class MoviesService {
       'Content-Type': 'application/json',
       'Authorization': authenticationService.currentUserValue && authenticationService.currentUserValue.token
     });
-    // this.store.pipe(first()).subscribe(state => {
     this.store.pipe(select(state => state[0])).subscribe(state => {
       this.params = state && state.params;
     });

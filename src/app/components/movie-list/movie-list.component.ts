@@ -1,11 +1,9 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {first} from 'rxjs/operators';
 
-import {Movie} from '../../../models';
-import {MoviesService} from '../../../services';
-import {MovieListState} from '../../../store/movie-list/movie-list.state';
-import * as fromAction from '../../../store/movie-list/movie-list.actions';
+import {Movie} from '../../models/index';
+import {MovieListState} from '../../store/movie-list/movie-list.state';
+import * as fromAction from '../../store/movie-list/movie-list.actions';
 
 @Component({
   selector: 'app-movie-list',
@@ -14,12 +12,11 @@ import * as fromAction from '../../../store/movie-list/movie-list.actions';
 })
 export class MovieListComponent implements OnInit, OnDestroy {
 
-  movies: Movie[] = [];
+  movies: { collection: Movie[], totals: number } = {collection: [], totals: 0};
   headElements = ['ImdbId', 'Title', 'Year', 'Metascore'];
   order = true;
 
   constructor(
-    // private moviesService: MoviesService,
     private store: Store<MovieListState>
   ) {
   }
@@ -34,7 +31,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
   private loadAllMovies() {
     this.store.dispatch(new fromAction.GetMovieList());
     this.store.pipe(select(state => state[0])).subscribe(state => {
-      console.log('here', state)
       this.movies = state && state.movies;
     });
   }

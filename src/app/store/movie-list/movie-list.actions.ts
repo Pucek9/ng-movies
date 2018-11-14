@@ -1,5 +1,4 @@
 import {Action} from '@ngrx/store';
-import {Movie} from '../../models';
 
 export const SET_LIMIT = '[Movies] SET_LIMIT';
 

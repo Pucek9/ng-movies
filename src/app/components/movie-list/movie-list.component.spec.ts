@@ -3,9 +3,9 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MovieListComponent} from './movie-list.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClient, HttpHandler} from '@angular/common/http';
-import {MoviesService} from '../../../services';
+import {MoviesService} from '../../services/index';
 import {of} from 'rxjs';
-import {DataGridComponent} from '../../data-grid/data-grid.component';
+import {DataGridComponent} from '../data-grid/data-grid.component';
 
 describe('MovieListComponent', () => {
   let component: MovieListComponent;
