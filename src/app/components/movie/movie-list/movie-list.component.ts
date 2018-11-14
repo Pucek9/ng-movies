@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {first} from 'rxjs/operators';
 
 import {Movie} from '../../../models';
@@ -14,12 +14,12 @@ import * as fromAction from '../../../store/movie-list/movie-list.actions';
 })
 export class MovieListComponent implements OnInit, OnDestroy {
 
-  movies: Movie[];
+  movies: Movie[] = [];
   headElements = ['ImdbId', 'Title', 'Year', 'Metascore'];
   order = true;
 
   constructor(
-    private moviesService: MoviesService,
+    // private moviesService: MoviesService,
     private store: Store<MovieListState>
   ) {
   }
@@ -32,9 +32,10 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
   private loadAllMovies() {
-    this.moviesService.getAll().subscribe((movies: object) => {
-      // @ts-ignore
-      this.movies = movies.collection;
+    this.store.dispatch(new fromAction.GetMovieList());
+    this.store.pipe(select(state => state[0])).subscribe(state => {
+      console.log('here', state)
+      this.movies = state && state.movies;
     });
   }
 

@@ -19,11 +19,11 @@ export class MovieListEffects {
 
   @Effect()
   getMovieList: Observable<Action> = this.actions$.pipe(
-    ofType(fromAction.SET_PAGE, fromAction.SET_SORT_DIR, fromAction.SET_SORT_BY, fromAction.SET_LIMIT),
+    ofType(fromAction.SET_PAGE, fromAction.SET_SORT_DIR, fromAction.SET_SORT_BY, fromAction.SET_LIMIT, fromAction.GET_MOVIE_LIST),
     mergeMap((action) => {
       console.log('effect', action);
       return this.movieListService.getAll().pipe(
-        map((data) => new fromAction.GetMovieList(data)),
+        map((data) => new fromAction.GotMovieList(data)),
         catchError(() => of(new fromAction.GetError()))
       );
     }));

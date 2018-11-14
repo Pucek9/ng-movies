@@ -15,7 +15,10 @@ export function MovieListReducer(state = defaultState, action: Action) {
 
       return {
         ...state,
-        limit: action.payload,
+        params: {
+          ...state.params,
+          limit: action.payload
+        },
       };
 
     }
@@ -24,7 +27,10 @@ export function MovieListReducer(state = defaultState, action: Action) {
 
       return {
         ...state,
-        page: action.payload,
+        params: {
+          ...state.params,
+          page: action.payload
+        },
       };
 
     }
@@ -33,7 +39,10 @@ export function MovieListReducer(state = defaultState, action: Action) {
 
       return {
         ...state,
-        sortBy: action.payload,
+        params: {
+          ...state.params,
+          sortBy: action.payload
+        },
       };
 
     }
@@ -42,15 +51,19 @@ export function MovieListReducer(state = defaultState, action: Action) {
 
       return {
         ...state,
-        sortDir: action.payload,
+        params: {
+          ...state.params,
+          sortDir: action.payload
+        },
       };
 
     }
 
-    case MoviesAction.GET_MOVIE_LIST: {
+    case MoviesAction.GOT_MOVIE_LIST: {
 
       return {
         ...state,
+        movies: action.payload
       };
 
     }

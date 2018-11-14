@@ -26,7 +26,7 @@ export class MoviesService {
     });
     // this.store.pipe(first()).subscribe(state => {
     this.store.pipe(select(state => state[0])).subscribe(state => {
-      this.params = state;
+      this.params = state && state.params;
     });
 
   }

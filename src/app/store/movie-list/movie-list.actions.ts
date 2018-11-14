@@ -11,6 +11,8 @@ export const SET_SORT_DIR = '[Movies] SET_SORT_DIR';
 
 export const GET_MOVIE_LIST = '[Movies] GET_MOVIE_LIST';
 
+export const GOT_MOVIE_LIST = '[Movies] GOT_MOVIE_LIST';
+
 export const GET_ERROR = '[Movies] GET_ERROR';
 
 
@@ -48,6 +50,13 @@ export class SetSortDir implements Action {
 
 export class GetMovieList implements Action {
   readonly type = GET_MOVIE_LIST;
+  constructor() {
+  }
+
+}
+
+export class GotMovieList implements Action {
+  readonly type = GOT_MOVIE_LIST;
   constructor(public payload: any) {
   }
 
@@ -60,4 +69,4 @@ export class GetError implements Action {
 
 }
 
-export type MovieListActions = SetLimit | SetPage | SetSortBy | SetSortDir | GetMovieList | GetError;
+export type MovieListActions = SetLimit | SetPage | SetSortBy | SetSortDir | GetMovieList| GotMovieList | GetError;
