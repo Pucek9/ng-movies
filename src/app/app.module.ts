@@ -2,22 +2,26 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
+import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {LoginComponent} from './components/login';
-import {MovieListComponent, MovieDetailsComponent, HeaderComponent, AlertComponent} from './components';
+import {
+  MovieListComponent,
+  MovieDetailsComponent,
+  HeaderComponent, AlertComponent,
+  DataGridComponent,
+  PaginationComponent,
+  LoginComponent
+} from './components';
 import {AlertService} from './services';
 import {rootReducer} from './store/root/root.reducer';
 import {RootEffects} from './store/root/root.effects';
-import {DataGridComponent} from './components/data-grid/data-grid.component';
-import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
-import {RouterModule} from '@angular/router';
-import {MDBBootstrapModule} from 'angular-bootstrap-md';
-import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [

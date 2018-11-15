@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 
 import * as paramsActions from '../../store/params/params.actions';
@@ -12,7 +12,7 @@ import {map, tap} from 'rxjs/operators';
   templateUrl: './data-grid.component.html',
   styleUrls: ['./data-grid.component.scss']
 })
-export class DataGridComponent implements OnInit {
+export class DataGridComponent implements OnInit, OnDestroy {
 
   @Input()
   headElements: string[];
@@ -43,12 +43,16 @@ export class DataGridComponent implements OnInit {
     );
   }
 
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
+
   public isSortable(head: string) {
     return this.sortElements.includes(head);
   }
 
   public isActual(i: number) {
-    return this.params$.pipe(map(params => params.sortBy === this.headElements[i].toLowerCase()));
+    return this.params$.pipe(map(params => params.sortBy === this.displayedElements[i]));
   }
 
   public changeSortDir() {
@@ -57,7 +61,7 @@ export class DataGridComponent implements OnInit {
   }
 
   public changeSortBy(i: number) {
-    this.store$.dispatch(new paramsActions.SetSortBy(this.headElements[i].toLowerCase()));
+    this.store$.dispatch(new paramsActions.SetSortBy(this.displayedElements[i]));
   }
 
 }
