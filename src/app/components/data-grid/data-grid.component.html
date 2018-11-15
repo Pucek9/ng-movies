@@ -1,4 +1,4 @@
-<table mdbTable class="z-depth-1">
+<table mdbTable class="z-depth-1" hover="true">
   <thead>
   <tr>
     <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
@@ -13,12 +13,8 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let el of elements; let i = index">
-    <td><a [routerLink]="['/details/'+el.imdbId]">{{el.imdbId}}</a></td>
-    <td>{{el.title}}</td>
-    <td>{{el.year}}</td>
-    <td>{{el.metascore}}</td>
+  <tr *ngFor="let el of elements$; let i = index" [routerLink]="['/details/'+el[urlId]]">
+    <td *ngFor="let col of displayedElements">{{el[col]}}</td>
   </tr>
   </tbody>
-
 </table>

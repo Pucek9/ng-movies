@@ -39,3 +39,4 @@ export function moviesReducer(state = defaultState, action: Action) {
 export const getMoviesState = state => state[0].movies;
 
 export const moviesCollectionSelector = createSelector(getMoviesState, (movies => movies.collection));
+export const moviesTotalsSelector = createSelector(getMoviesState, (movies => movies.totals));

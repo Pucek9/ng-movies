@@ -19,16 +19,16 @@ export class DataGridComponent implements OnInit {
   @Input()
   sortElements: string[];
   @Input()
-  elements: any[];
+  displayedElements: string[];
+  @Input()
+  elements$: any[];
+  @Input()
+  urlId: string;
 
   sortDir: boolean;
   subscriptions = new Subscription();
   params$: Observable<ParamsState> = this.store$.pipe(select(paramsSelector));
   sortDir$: Observable<boolean> = this.params$.pipe(map(params => params.sortDir === 1));
-
-  // @HostListener('input') onInput() {
-  //   this.changeSortDir();
-  // }
 
   constructor(
     private store$: Store<ParamsState>,
@@ -59,13 +59,5 @@ export class DataGridComponent implements OnInit {
   public changeSortBy(i: number) {
     this.store$.dispatch(new paramsActions.SetSortBy(this.headElements[i].toLowerCase()));
   }
-
-
-  // if (this.isActual(head)) {
-  //   this.changeSortDir();
-  // } else {
-  //   this.store$.dispatch(new paramsActions.SetSortBy(head.toLowerCase()));
-  // }
-
 
 }

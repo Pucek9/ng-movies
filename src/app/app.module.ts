@@ -17,6 +17,7 @@ import {DataGridComponent} from './components/data-grid/data-grid.component';
 import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {RouterModule} from '@angular/router';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
     MovieListComponent,
     MovieDetailsComponent,
     DataGridComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
