@@ -9,7 +9,7 @@ export function initializeParamsState(): ParamsState {
   return {
     limit: 0,
     page: 1,
-    sortBy: '_id',
+    sortBy: 'title',
     sortDir: 1
   };
 }

@@ -16,6 +16,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 
   movies$: Observable<Movie>;
   headElements = ['ImdbId', 'Title', 'Year', 'Metascore'];
+  sortElements = ['Title', 'Year', 'Metascore'];
 
   constructor(
     private store$: Store<MoviesState>
@@ -30,7 +31,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
   private loadAllMovies() {
-    this.store$.dispatch(new moviesActions.GetMovieList()); // TODO should be initialized by route effect
+    this.store$.dispatch(new moviesActions.GetMovieList()); // TODO: should be initialized by route effect
     this.movies$ = this.store$.pipe(select(moviesCollectionSelector));
   }
 

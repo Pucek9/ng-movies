@@ -1,7 +1,15 @@
-<table class="z-depth-1">
+<label>Sorting ascending <input type="checkbox" [(ngModel)]="order"></label>
+<i class="fa" [ngClass]="{'fa-sort-alpha-asc': order === true, 'fa-sort-alpha-desc': order === false}"
+   aria-hidden="true"></i>
+
+<table mdbTable class="z-depth-1">
   <thead>
   <tr>
-    <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}</th>
+    <th *ngFor="let head of headElements; let i = index" scope="col">
+      {{head}}
+      <i *ngIf="isSortable(head)" class="fa"
+         [ngClass]="{'fa-sort-alpha-asc': order === true && (isActual(head) | async) , 'fa-sort-alpha-desc': order === false && (isActual(head) | async) , 'fa-sort': !(isActual(head) | async)}"
+         (click)="sortBy(head)" aria-hidden="true"></i></th>
   </tr>
   </thead>
   <tbody>
@@ -12,7 +20,5 @@
     <td>{{el.metascore}}</td>
   </tr>
   </tbody>
-  <tfoot>
-  <input type="button" (click)="changeSortDir()">
-  </tfoot>
+
 </table>
