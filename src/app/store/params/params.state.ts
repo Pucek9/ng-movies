@@ -6,7 +6,7 @@ export interface ParamsState {
 }
 
 export function initializeParamsState(): ParamsState {
-  return {
+  return JSON.parse(localStorage.getItem('params')) || {
     limit: 0,
     page: 1,
     sortBy: 'title',

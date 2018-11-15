@@ -35,10 +35,14 @@ export class RootEffects {
   getMovieList: Observable<Action> = this.actions$.pipe(
     ofType(...allowedTypesForGetMovieList),
     withLatestFrom(this.$params),
-    switchMap(([action, params]: [Action, ParamsState]) => this.movieListService.getAll(params).pipe(
-      map((data: MoviesState) => new moviesActions.GotMovieList(data)),
-      catchError(() => of(new moviesActions.GotError()))
-    ))
+    switchMap(([action, params]: [Action, ParamsState]) => {
+        localStorage.setItem('params', JSON.stringify(params));
+        return this.movieListService.getAll(params).pipe(
+          map((data: MoviesState) => new moviesActions.GotMovieList(data)),
+          catchError(() => of(new moviesActions.GotError()))
+        );
+      }
+    )
   );
 
 }
