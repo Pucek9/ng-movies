@@ -1,7 +1,7 @@
 <h2 style="text-align: center">Movie manager</h2>
-<app-data-grid [elements$]="movies$ | async"
+<app-data-grid [elements]="movies$ | async"
                [headElements]="headElements"
                [sortElements]="sortElements"
                [displayedElements]="displayedElements"
                [urlId]="urlId"></app-data-grid>
-<app-pagination [total$]="total$ | async"></app-pagination>
+<app-pagination [total$]="total$"></app-pagination>
