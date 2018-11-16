@@ -5,8 +5,9 @@ import {Observable} from 'rxjs';
 import {Movie} from '../../models';
 import {MoviesState} from '../../store/movies/movies.state';
 import * as paramsActions from '../../store/params/params.actions';
+import * as moviesActions from '../../store/movies/movies.actions';
 import {moviesCollectionSelector, moviesTotalSelector} from '../../store/movies/movies.reducer';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-movie-list',
@@ -25,7 +26,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
   constructor(
     private store$: Store<MoviesState>,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
   ) {
   }
 
