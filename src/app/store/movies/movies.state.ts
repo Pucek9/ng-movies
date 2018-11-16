@@ -2,13 +2,13 @@ import {Movie} from '../../models';
 
 export interface MoviesState {
   collection: Movie[];
-  totals: number;
+  total: number;
 }
 
 export function initializeMoviesState(): MoviesState {
   return {
     collection: [],
-    totals: 0
+    total: 0
   };
 }
 

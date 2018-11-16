@@ -1,20 +1,20 @@
 <div class="row">
   <div class="col-md-6">
-    <select class="browser-default custom-select" (change)="changeLimit()" [(ngModel)]="limit">
-      <option selected>Items per page:</option>
+    <select class="browser-default custom-select" (change)="changeLimit()" [(ngModel)]="selectedLimit">
+      <option selected [value]="0">Items per page:</option>
       <option [value]="limit" *ngFor="let limit of limits">{{limit}}</option>
     </select>
   </div>
   <nav aria-label="Page navigation example">
     <ul class="pagination pg-blue justify-content-center">
       <li class="page-item" [ngClass]="{'disabled': (page$ | async) === 1}">
-        <a class="page-link" tabindex="-1" mdbWavesEffect>Previous</a>
+        <a class="page-link" tabindex="-1" mdbWavesEffect (click)="changePage(selectedPage-1)">Previous</a>
       </li>
-      <li class="page-item"><a class="page-link" mdbWavesEffect>1</a></li>
-      <li class="page-item"><a class="page-link" mdbWavesEffect>2</a></li>
-      <li class="page-item"><a class="page-link" mdbWavesEffect>3</a></li>
-      <li class="page-item">
-        <a class="page-link" mdbWavesEffect>Next</a>
+      <li *ngFor="let page of pages; let i = index" class="page-item" [ngClass]="{'active': (page$ | async) === page}">
+        <a class="page-link" mdbWavesEffect (click)="changePage(page)">{{page}}</a>
+      </li>
+      <li class="page-item" [ngClass]="{'disabled': (page$ | async) === pages.length}">
+        <a class="page-link" mdbWavesEffect (click)="changePage(selectedPage+1)">Next</a>
       </li>
     </ul>
   </nav>

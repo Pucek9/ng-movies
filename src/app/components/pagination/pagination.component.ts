@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {ParamsState} from '../../store/params/params.state';
 import {Observable, Subscription} from 'rxjs';
@@ -13,12 +13,17 @@ import * as paramsActions from '../../store/params/params.actions';
 })
 export class PaginationComponent implements OnInit, OnDestroy {
 
+  @Input()
+  total$;
   subscriptions = new Subscription();
   limits: Array<number>;
   params$: Observable<ParamsState> = this.store$.pipe(select(paramsSelector));
   page$: Observable<number> = this.params$.pipe(map(params => params.page));
   limit$: Observable<number> = this.params$.pipe(map(params => params.limit));
-  limit: number;
+  selectedLimit: number;
+  selectedPage: number;
+  pages = [1, 2, 3];
+  // offset = (page - 1) * itemsPerPage + 1
 
   constructor(
     private store$: Store<ParamsState>,
@@ -26,10 +31,11 @@ export class PaginationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.limits = [0, 5, 10, 15];
+    this.limits = [5, 10, 15];
     this.subscriptions.add(
-      this.limit$.subscribe(limit => {
-        this.limit = limit;
+      this.params$.subscribe(params => {
+        this.selectedLimit = params.limit;
+        this.selectedPage = params.page;
       })
     );
   }
@@ -39,9 +45,17 @@ export class PaginationComponent implements OnInit, OnDestroy {
   }
 
   changeLimit() {
-    console.log(this.limit);
-    this.store$.dispatch(new paramsActions.SetLimit(this.limit));
+    this.store$.dispatch(new paramsActions.SetLimit(this.selectedLimit));
+    if (this.selectedLimit === 0) {
+      this.changePage(1);
+    }
   }
+
+  changePage(page) {
+    this.selectedPage = page;
+    this.store$.dispatch(new paramsActions.SetPage(this.selectedPage));
+  }
+
 }
 
 
