@@ -1,3 +1,5 @@
+<span *ngIf="(elements$ | async)?.length === 0" style="color:red">Please reload page manually after first login. Sorry for that problem.</span>
+
 <table mdbTable class="z-depth-1" hover="true">
   <thead>
   <tr>
@@ -13,7 +15,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let el of elements; let i = index" [routerLink]="['/details/'+el[urlId]]">
+  <tr *ngFor="let el of elements$| async; let i=index" [routerLink]="['/details/'+el[urlId]]">
     <td *ngFor="let col of displayedElements">{{el[col]}}</td>
   </tr>
   </tbody>

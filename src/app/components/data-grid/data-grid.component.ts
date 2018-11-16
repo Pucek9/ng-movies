@@ -21,7 +21,7 @@ export class DataGridComponent implements OnInit, OnDestroy {
   @Input()
   displayedElements: string[];
   @Input()
-  elements: any[];
+  elements$: Observable<any>;
   @Input()
   urlId: string;
 
