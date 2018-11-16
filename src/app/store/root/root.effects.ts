@@ -36,6 +36,7 @@ export class RootEffects {
     ofType(...allowedTypesForGetMovieList),
     withLatestFrom(this.$params),
     switchMap(([action, params]: [Action, ParamsState]) => {
+      console.log('effect', action, params);
         localStorage.setItem('params', JSON.stringify(params));
         return this.movieListService.getAll(params).pipe(
           map((data: MoviesState) => new moviesActions.GotMovieList(data)),

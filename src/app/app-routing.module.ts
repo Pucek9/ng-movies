@@ -5,12 +5,12 @@ import {AuthGuard} from './guards';
 import {MovieListComponent, MovieDetailsComponent, LoginComponent} from './components';
 
 const routes: Routes = [
-  {path: '', component: MovieListComponent, canActivate: [AuthGuard]},
+  {path: 'page/:nr', component: MovieListComponent, canActivate: [AuthGuard]},
   {path: 'details/:id', component: MovieDetailsComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
 
   // otherwise redirect to home
-  {path: '**', redirectTo: ''}
+  {path: '**', redirectTo: 'page/1'}
 ];
 
 @NgModule({

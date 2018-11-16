@@ -8,14 +8,14 @@
   <nav aria-label="Page navigation example">
     <ul class="pagination pg-blue justify-content-center">
       <li class="page-item" [ngClass]="{'disabled': (page$ | async) === 1}">
-        <a class="page-link" tabindex="-1" mdbWavesEffect (click)="changePage(selectedPage-1)">Previous</a>
+        <a class="page-link" tabindex="-1" mdbWavesEffect (click)="previousPage()">Previous</a>
       </li>
       <li *ngFor="let page of pages$ | async; let i = index" class="page-item"
           [ngClass]="{'active': (page$ | async) === page}">
         <a class="page-link" mdbWavesEffect (click)="changePage(page)">{{page}}</a>
       </li>
       <li class="page-item" [ngClass]="{'disabled': (page$ | async) === (pages$ | async).length}">
-        <a class="page-link" mdbWavesEffect (click)="changePage(selectedPage+1)">Next</a>
+        <a class="page-link" mdbWavesEffect (click)="nextPage()">Next</a>
       </li>
     </ul>
   </nav>

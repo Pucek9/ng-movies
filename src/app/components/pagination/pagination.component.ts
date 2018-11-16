@@ -6,6 +6,7 @@ import {paramsSelector} from '../../store/params/params.reducer';
 import {map, switchMap, withLatestFrom} from 'rxjs/operators';
 import * as paramsActions from '../../store/params/params.actions';
 import {generateArrayOfNumbers} from '../../helpers/helpers';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
@@ -20,14 +21,16 @@ export class PaginationComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription();
   limits: Array<number> = [5, 10, 15];
   params$: Observable<ParamsState> = this.store$.pipe(select(paramsSelector));
-  page$: Observable<number> = this.params$.pipe(map(params => params.page));
+  page$: Observable<number>    = this.params$.pipe(map(params => params.page));
   limit$: Observable<number> = this.params$.pipe(map(params => params.limit));
   selectedLimit: string;
   selectedPage: number;
   pages$: Observable<number[]>;
+  pages: number[] = [1];
 
   constructor(
     private store$: Store<ParamsState>,
+    private router: Router
   ) {
 
   }
@@ -40,12 +43,11 @@ export class PaginationComponent implements OnInit, OnDestroy {
         return of(pages);
       })
     );
-    this.subscriptions.add(
-      this.params$.subscribe(params => {
-        this.selectedLimit = params.limit.toString();
-        this.selectedPage = params.page;
-      })
-    );
+    this.subscriptions.add(this.params$.subscribe(params => {
+      this.selectedLimit = params.limit.toString();
+      this.selectedPage = params.page;
+    }));
+    this.subscriptions.add(this.pages$.subscribe(pages => this.pages = pages));
   }
 
   ngOnDestroy() {
@@ -55,15 +57,27 @@ export class PaginationComponent implements OnInit, OnDestroy {
   changeLimit() {
     this.store$.dispatch(new paramsActions.SetLimit(parseInt(this.selectedLimit, 0)));
     this.changePage(1);
+  }
 
+  goToSelectedPage() {
+    this.store$.dispatch(new paramsActions.SetPage(this.selectedPage));
+    this.router.navigate(['/page/' + this.selectedPage]);
   }
 
   changePage(page) {
     this.selectedPage = page;
-    this.store$.dispatch(new paramsActions.SetPage(this.selectedPage));
+    this.goToSelectedPage();
   }
 
+  nextPage() {
+    this.selectedPage++;
+    this.goToSelectedPage();
+  }
 
+  previousPage() {
+    this.selectedPage--;
+    this.goToSelectedPage();
+  }
 }
 
 
