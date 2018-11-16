@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6">
     <select class="browser-default custom-select" (change)="changeLimit()" [(ngModel)]="selectedLimit">
-      <option selected [value]="0">Items per page:</option>
+      <option selected value="0">Items per page:</option>
       <option [value]="limit" *ngFor="let limit of limits">{{limit}}</option>
     </select>
   </div>
@@ -10,7 +10,8 @@
       <li class="page-item" [ngClass]="{'disabled': (page$ | async) === 1}">
         <a class="page-link" tabindex="-1" mdbWavesEffect (click)="changePage(selectedPage-1)">Previous</a>
       </li>
-      <li *ngFor="let page of pages$ | async; let i = index" class="page-item" [ngClass]="{'active': (page$ | async) === page}">
+      <li *ngFor="let page of pages$ | async; let i = index" class="page-item"
+          [ngClass]="{'active': (page$ | async) === page}">
         <a class="page-link" mdbWavesEffect (click)="changePage(page)">{{page}}</a>
       </li>
       <li class="page-item" [ngClass]="{'disabled': (page$ | async) === (pages$ | async).length}">
@@ -19,4 +20,3 @@
     </ul>
   </nav>
 </div>
-{{total$ | async}} / {{limit$ | async}} = {{pages$ | async}}

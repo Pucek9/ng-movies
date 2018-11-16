@@ -39,7 +39,7 @@ export class RootEffects {
         localStorage.setItem('params', JSON.stringify(params));
         return this.movieListService.getAll(params).pipe(
           map((data: MoviesState) => new moviesActions.GotMovieList(data)),
-          catchError(() => of(new moviesActions.GotError()))
+          catchError((error) => of(new moviesActions.GotError(error)))
         );
       }
     )

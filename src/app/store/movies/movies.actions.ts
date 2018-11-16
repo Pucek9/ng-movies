@@ -21,7 +21,7 @@ export class GotMovieList implements Action {
 
 export class GotError implements Action {
   readonly type = GOT_ERROR;
-  constructor() {
+  constructor(public payload: Error) {
   }
 
 }

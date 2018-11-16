@@ -22,7 +22,7 @@ export class PaginationComponent implements OnInit, OnDestroy {
   params$: Observable<ParamsState> = this.store$.pipe(select(paramsSelector));
   page$: Observable<number> = this.params$.pipe(map(params => params.page));
   limit$: Observable<number> = this.params$.pipe(map(params => params.limit));
-  selectedLimit: number;
+  selectedLimit: string;
   selectedPage: number;
   pages$: Observable<number[]>;
 
@@ -42,7 +42,7 @@ export class PaginationComponent implements OnInit, OnDestroy {
     );
     this.subscriptions.add(
       this.params$.subscribe(params => {
-        this.selectedLimit = params.limit;
+        this.selectedLimit = params.limit.toString();
         this.selectedPage = params.page;
       })
     );
@@ -54,9 +54,8 @@ export class PaginationComponent implements OnInit, OnDestroy {
 
   changeLimit() {
     this.store$.dispatch(new paramsActions.SetLimit(parseInt(this.selectedLimit, 0)));
-    if (this.selectedLimit === 0) {
-      this.changePage(1);
-    }
+    this.changePage(1);
+
   }
 
   changePage(page) {
