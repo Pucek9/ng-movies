@@ -49,7 +49,7 @@ import {RootEffects} from './store/root/root.effects';
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({maxAge: 10}),
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  schemas: [NO_ERRORS_SCHEMA],
   providers: [AlertService],
   bootstrap: [AppComponent]
 })
