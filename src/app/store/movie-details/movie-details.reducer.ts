@@ -28,6 +28,12 @@ export function movieDetailsReducer(state = defaultState, action: Action) {
 
     }
 
+    case MovieDetailsAction.CLEAR: {
+
+      return initializeMovieDetailsState();
+
+    }
+
     default: {
       return state;
     }

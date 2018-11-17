@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {catchError, filter, map, switchMap, withLatestFrom} from 'rxjs/operators';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Action, select, Store} from '@ngrx/store';
+import {RouterNavigationAction} from '@ngrx/router-store';
 import {Observable, of} from 'rxjs';
 
 import {AuthenticationService, MoviesService} from '../../services';
@@ -39,11 +40,11 @@ export class RootEffects {
   @Effect()
   getMovie: Observable<Action> = this.actions$.pipe(
     ofType('ROUTER_NAVIGATION'),
-    filter((action: Action) => {
+    filter((action: RouterNavigationAction) => {
       return action.payload.event.urlAfterRedirects.startsWith('/details/');
     }),
     withLatestFrom(this.authenticationService.currentUser),
-    switchMap(([action, user]: [Action, User]) => {
+    switchMap(([action, user]: [RouterNavigationAction, User]) => {
         const imdbId = action.payload.event.urlAfterRedirects.split('/')[2];
         return this.movieListService.getById(imdbId, user).pipe(
           map((data: MovieDetailsState) => new movieDetailsActions.GotMovieDetails(data)),

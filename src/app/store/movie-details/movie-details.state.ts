@@ -13,14 +13,14 @@ export interface MovieDetailsState {
 
 export function initializeMovieDetailsState(): MovieDetailsState {
   return {
-    _id: '',
-    imdbId: '',
-    title: '',
-    director: '',
+    _id: null,
+    imdbId: null,
+    title: null,
+    director: null,
     year: null,
     metascore: null,
     actors: [],
-    posterUrl: '',
+    posterUrl: null,
   };
 }
 

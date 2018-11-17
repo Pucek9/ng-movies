@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {MoviesService} from '../../services';
-import * as paramsActions from '../../store/params/params.actions';
+import * as movieDetailsActions from '../../store/movie-details/movie-details.actions';
 import {select, Store} from '@ngrx/store';
 import {MoviesState} from '../../store/movies/movies.state';
 import {getMovieDetailsSelector} from '../../store/movie-details/movie-details.reducer';
@@ -11,7 +10,7 @@ import {getMovieDetailsSelector} from '../../store/movie-details/movie-details.r
   templateUrl: './movie-details.component.html',
   styleUrls: ['./movie-details.component.scss']
 })
-export class MovieDetailsComponent implements OnInit {
+export class MovieDetailsComponent implements OnDestroy {
 
   public details$ = this.store$.pipe(select(getMovieDetailsSelector));
 
@@ -21,10 +20,8 @@ export class MovieDetailsComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
-    // this.activatedRoute.params.subscribe(params => {
-    //   // this.store$.dispatch(new paramsActions.GetMovie(params.id));
-    // });
+  ngOnDestroy() {
+    this.store$.dispatch(new movieDetailsActions.Clear());
   }
 
 }
