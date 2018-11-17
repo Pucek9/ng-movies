@@ -5,7 +5,6 @@ import {Observable} from 'rxjs';
 import {Movie} from '../../models';
 import {MoviesState} from '../../store/movies/movies.state';
 import * as paramsActions from '../../store/params/params.actions';
-import * as moviesActions from '../../store/movies/movies.actions';
 import {moviesCollectionSelector, moviesTotalSelector} from '../../store/movies/movies.reducer';
 import {ActivatedRoute} from '@angular/router';
 
@@ -19,6 +18,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
   movies$: Observable<Movie>;
   total$: Observable<number>;
   headElements = ['ImdbId', 'Title', 'Year', 'Metascore'];
+  typeElements = ['string', 'string', 'number', 'number'];
   sortElements = ['Title', 'Year', 'Metascore'];
   displayedElements = ['imdbId', 'title', 'year', 'metascore'];
   urlId = 'imdbId';

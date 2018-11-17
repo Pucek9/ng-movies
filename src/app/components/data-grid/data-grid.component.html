@@ -4,7 +4,9 @@
     <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
       <a *ngIf="isSortable(head)">
       <span *ngIf="isActual(i) | async; else sort">
-      <mdb-icon [icon]="(sortDir$ | async)?'sort-alpha-asc' : 'sort-alpha-desc'" (click)="changeSortDir()"></mdb-icon>
+      <mdb-icon
+        [icon]="'sort-'+(typeElements[i]==='string' ? 'alpha' : 'numeric') +'-'+((sortDir$ | async) ? 'asc' : 'desc')"
+        (click)="changeSortDir()"></mdb-icon>
       </span>
         <ng-template #sort>
           <mdb-icon icon="sort" (click)="changeSortBy(i)"></mdb-icon>
