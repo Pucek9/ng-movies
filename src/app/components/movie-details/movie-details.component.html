@@ -1,10 +1,10 @@
-<p *ngIf="data">
-  {{data.imdbId}}
-  {{data.title}}
-  {{data.director}}
-  <!--{{data.genres}}-->
-  {{data.year}}
-  {{data.metascore}}
-  <!--{{data.actors}}-->
-  <img [src]="data.posterUrl" [alt]="data.title">
+<p *ngIf="(details$ | async) as details">
+  {{details.imdbId}}
+  {{details.title}}
+  {{details.director}}
+  <!--{{details.genres}}-->
+  {{details.year}}
+  {{details.metascore}}
+  <!--{{details.actors}}-->
+  <img [src]="details.posterUrl" [alt]="details.title">
 </p>

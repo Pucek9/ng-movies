@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {MoviesService} from '../../services';
+import * as paramsActions from '../../store/params/params.actions';
+import {select, Store} from '@ngrx/store';
+import {MoviesState} from '../../store/movies/movies.state';
+import {getMovieDetailsSelector} from '../../store/movie-details/movie-details.reducer';
 
 @Component({
   selector: 'app-movie-details',
@@ -9,20 +13,18 @@ import {MoviesService} from '../../services';
 })
 export class MovieDetailsComponent implements OnInit {
 
-  public data;
+  public details$ = this.store$.pipe(select(getMovieDetailsSelector));
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private moviesService: MoviesService,
+    private store$: Store<MoviesState>,
   ) {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.moviesService.getById(params.id).subscribe(movie => {
-        this.data = movie;
-      });
-    });
+    // this.activatedRoute.params.subscribe(params => {
+    //   // this.store$.dispatch(new paramsActions.GetMovie(params.id));
+    // });
   }
 
 }

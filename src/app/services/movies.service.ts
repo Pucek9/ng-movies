@@ -8,27 +8,24 @@ import {AuthenticationService} from './authentication.service';
 @Injectable({providedIn: 'root'})
 export class MoviesService {
 
-  private readonly headers: HttpHeaders;
-
   constructor(
     private http: HttpClient,
   ) {
-    this.headers = new HttpHeaders({
+  }
+
+  getHeaders( user) {
+    return new HttpHeaders({
       'Content-Type': 'application/json',
+      'Authorization': user.token,
     });
   }
 
   getAll(params, user) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': user.token,
-    });
-    console.log({headers, params});
-    return this.http.get(`${environment.apiURL}/movie`, {headers, params});
+    return this.http.get(`${environment.apiURL}/movie`, {headers: this.getHeaders(user), params});
   }
 
-  getById(imdbId: string) {
-    return this.http.get(`${environment.apiURL}/movie/${imdbId}`, {headers: this.headers});
+  getById(imdbId: string, user) {
+    return this.http.get(`${environment.apiURL}/movie/${imdbId}`, {headers: this.getHeaders(user)});
   }
 
 }
