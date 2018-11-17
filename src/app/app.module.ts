@@ -17,7 +17,8 @@ import {
   HeaderComponent, AlertComponent,
   DataGridComponent,
   PaginationComponent,
-  LoginComponent
+  LoginComponent,
+  ActorComponent,
 } from './components';
 import {AlertService} from './services';
 import {rootReducer} from './store/root/root.reducer';
@@ -33,6 +34,7 @@ import {RootEffects} from './store/root/root.effects';
     MovieDetailsComponent,
     DataGridComponent,
     PaginationComponent,
+    ActorComponent,
   ],
   imports: [
     BrowserModule,
