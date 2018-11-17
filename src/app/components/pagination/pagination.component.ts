@@ -60,7 +60,6 @@ export class PaginationComponent implements OnInit, OnDestroy {
   }
 
   goToSelectedPage() {
-    this.store$.dispatch(new paramsActions.SetPage(this.selectedPage));
     this.router.navigate(['/page/' + this.selectedPage]);
   }
 

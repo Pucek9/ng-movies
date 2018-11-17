@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="(pages$ | async) as pages">
   <div class="col-md-6">
     <select class="browser-default custom-select" (change)="changeLimit()" [(ngModel)]="selectedLimit">
       <option selected value="0">Items per page:</option>
@@ -10,11 +10,11 @@
       <li class="page-item" [ngClass]="{'disabled': (page$ | async) === 1}">
         <a class="page-link" tabindex="-1" mdbWavesEffect (click)="previousPage()">Previous</a>
       </li>
-      <li *ngFor="let page of pages$ | async; let i = index" class="page-item"
+      <li *ngFor="let page of pages; let i = index" class="page-item"
           [ngClass]="{'active': (page$ | async) === page}">
         <a class="page-link" mdbWavesEffect (click)="changePage(page)">{{page}}</a>
       </li>
-      <li class="page-item" [ngClass]="{'disabled': (page$ | async) === (pages$ | async).length}">
+      <li class="page-item" [ngClass]="{'disabled': (page$ | async) === pages?.length}">
         <a class="page-link" mdbWavesEffect (click)="nextPage()">Next</a>
       </li>
     </ul>
