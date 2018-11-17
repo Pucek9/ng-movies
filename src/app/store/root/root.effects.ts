@@ -4,12 +4,13 @@ import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Action, select, Store} from '@ngrx/store';
 import {Observable, of} from 'rxjs';
 
-import {MoviesService} from '../../services';
+import {AuthenticationService, MoviesService} from '../../services';
 import * as moviesActions from '../movies/movies.actions';
 import * as paramsActions from '../params/params.actions';
 import {ParamsState} from '../params/params.state';
 import {paramsSelector} from '../params/params.reducer';
 import {MoviesState} from '../movies/movies.state';
+import {User} from '../../models';
 
 const allowedTypesForGetMovieList = [
   moviesActions.GET_MOVIE_LIST,
@@ -26,6 +27,7 @@ export class RootEffects {
 
   constructor(
     private movieListService: MoviesService,
+    private authenticationService: AuthenticationService,
     private store$: Store<ParamsState>,
     private actions$: Actions,
   ) {
@@ -34,10 +36,11 @@ export class RootEffects {
   @Effect()
   getMovieList: Observable<Action> = this.actions$.pipe(
     ofType(...allowedTypesForGetMovieList),
-    withLatestFrom(this.$params),
-    switchMap(([action, params]: [Action, ParamsState]) => {
+    withLatestFrom(this.$params, this.authenticationService.currentUser),
+    switchMap(([action, params, user]: [Action, ParamsState, User]) => {
         localStorage.setItem('params', JSON.stringify(params));
-        return this.movieListService.getAll(params).pipe(
+        console.log(user)
+        return this.movieListService.getAll(params, user).pipe(
           map((data: MoviesState) => new moviesActions.GotMovieList(data)),
           catchError((error) => of(new moviesActions.GotError(error)))
         );

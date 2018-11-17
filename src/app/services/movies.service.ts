@@ -12,17 +12,19 @@ export class MoviesService {
 
   constructor(
     private http: HttpClient,
-    private authenticationService: AuthenticationService,
-
   ) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': authenticationService.currentUserValue && authenticationService.currentUserValue.token
     });
   }
 
-  getAll(params) {
-    return this.http.get(`${environment.apiURL}/movie`, {headers: this.headers, params});
+  getAll(params, user) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': user.token,
+    });
+    console.log({headers, params});
+    return this.http.get(`${environment.apiURL}/movie`, {headers, params});
   }
 
   getById(imdbId: string) {
