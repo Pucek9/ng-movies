@@ -1,5 +1,5 @@
 <div class="row" *ngIf="(pages$ | async) as pages">
-  <div class="col-md-6">
+  <div class="col-md-3 offset-md-3">
     <select class="browser-default custom-select" (change)="changeLimit()" [(ngModel)]="selectedLimit">
       <option selected value="0">Items per page:</option>
       <option [value]="limit" *ngFor="let limit of limits">{{limit}}</option>

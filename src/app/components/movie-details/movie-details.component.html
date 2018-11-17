@@ -2,13 +2,25 @@
   <img class="center" *ngIf="details.imdbId === null; else detailsContent"
        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
   <ng-template #detailsContent>
-    {{details.imdbId}}
-    {{details.title}}
-    {{details.director}}
-    <!--{{details.genres}}-->
-    {{details.year}}
-    {{details.metascore}}
-    <!--{{details.actors}}-->
-    <img [src]="details.posterUrl" [alt]="details.title">
+    <div class="row">
+      <div class="col col-md-5 offset-md-2">
+        <h2>{{details.title}} ({{details.year}})</h2>
+        <p>Director: {{details.director}}</p>
+        <div>Genres:
+          <button *ngFor="let genre of details.genres" type="button" mdbBtn color="primary" size="sm" mdbWavesEffect>
+            {{genre}}
+          </button>
+        </div>
+        <p>Metascore: <button type="button" mdbBtn color="amber" size="sm">{{details.metascore}}</button></p>
+        Actors:
+        <div class="col col-md-6">
+          <ul class="list-group" *ngFor="let actor of details.actors">
+            <li class="list-group-item" mdbWavesEffect size="sm">{{actor.name}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col col-md-2"><img [src]="details.posterUrl" [alt]="details.title">
+      </div>
+    </div>
   </ng-template>
 </div>
