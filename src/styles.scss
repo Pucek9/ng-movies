@@ -1,1 +1,15 @@
 @import "assets/styles/variables/main";
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.padding-5 {
+  padding: 5px;
+}
+
+.clickable {
+  cursor: pointer;
+}

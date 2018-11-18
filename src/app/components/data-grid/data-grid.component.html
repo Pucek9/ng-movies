@@ -15,7 +15,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr class="hoverable" *ngFor="let el of elements$| async; let i=index" [routerLink]="[route+el[urlId]]">
+  <tr class="hoverable clickable" *ngFor="let el of elements$| async; let i=index" [routerLink]="[route+el[urlId]]">
     <td *ngFor="let col of displayedElements">{{el[col]}}</td>
   </tr>
   </tbody>
