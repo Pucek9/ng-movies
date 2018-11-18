@@ -19,7 +19,7 @@
             Actors:
             <div class="col col-md-7">
               <ul class="list-group" *ngFor="let actor of details.actors">
-                <li class="list-group-item padding-5" mdbWavesEffect><a [routerLink]="['/actor/' + actor.imdbId]">{{actor.name}}</a></li>
+                <li class="list-group-item padding-5 hoverable" mdbWavesEffect [routerLink]="['/actor/' + actor.imdbId]">{{actor.name}}</li>
               </ul>
             </div>
           </mdb-card-text>

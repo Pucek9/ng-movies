@@ -1,4 +1,4 @@
-<table mdbTable class="z-depth-1 table-color" hover="true">
+<table mdbTable class="z-depth-1 table-color">
   <thead>
   <tr>
     <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
@@ -15,7 +15,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let el of elements$| async; let i=index" [routerLink]="[route+el[urlId]]">
+  <tr class="hoverable" *ngFor="let el of elements$| async; let i=index" [routerLink]="[route+el[urlId]]">
     <td *ngFor="let col of displayedElements">{{el[col]}}</td>
   </tr>
   </tbody>
