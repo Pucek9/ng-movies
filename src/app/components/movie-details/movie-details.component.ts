@@ -4,6 +4,7 @@ import {select, Store} from '@ngrx/store';
 import * as movieDetailsActions from '../../store/movie-details/movie-details.actions';
 import {MoviesState} from '../../store/movies/movies.state';
 import {getMovieDetailsSelector} from '../../store/movie-details/movie-details.reducer';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-movie-details',
@@ -13,6 +14,7 @@ import {getMovieDetailsSelector} from '../../store/movie-details/movie-details.r
 export class MovieDetailsComponent implements OnDestroy {
 
   public details$ = this.store$.pipe(select(getMovieDetailsSelector));
+  public imdbURL = environment.imdbURL;
 
   constructor(
     private store$: Store<MoviesState>,

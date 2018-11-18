@@ -7,7 +7,7 @@
       <div class="col col-md-5 offset-md-2 card z-depth-2">
         <mdb-card-body>
           <mdb-card-title>
-            <h2>{{actor.name}}</h2>
+            <h2><a [href]="imdbURL+'/name/'+actor.imdbId" target="_blank">{{actor.name}}</a></h2>
           </mdb-card-title>
           <mdb-card-text>
             <p>Birthday: {{actor.birthday | date}}</p>
