@@ -21,6 +21,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
   typeElements = ['string', 'string', 'number', 'number'];
   sortElements = ['Title', 'Year', 'Metascore'];
   displayedElements = ['imdbId', 'title', 'year', 'metascore'];
+  route = '/movie/';
   urlId = 'imdbId';
 
   constructor(

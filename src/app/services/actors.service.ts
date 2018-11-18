@@ -6,7 +6,7 @@ import {prepareCommonHeaders} from '../helpers/helpers';
 
 
 @Injectable({providedIn: 'root'})
-export class MoviesService {
+export class ActorsService {
 
   constructor(
     private http: HttpClient,
@@ -14,11 +14,11 @@ export class MoviesService {
   }
 
   getAll(params, user) {
-    return this.http.get(`${environment.apiURL}/movie`, {headers: prepareCommonHeaders(user), params});
+    return this.http.get(`${environment.apiURL}/actor`, {headers: prepareCommonHeaders(user), params});
   }
 
   getById(imdbId: string, user) {
-    return this.http.get(`${environment.apiURL}/movie/${imdbId}`, {headers: prepareCommonHeaders(user)});
+    return this.http.get(`${environment.apiURL}/actor/${imdbId}`, {headers: prepareCommonHeaders(user)});
   }
 
 }

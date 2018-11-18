@@ -1,31 +1,21 @@
-<div *ngIf="(details$ | async) as details">
-  <img class="center" *ngIf="details.imdbId === null; else detailsContent"
+<div *ngIf="(actor$ | async) as actor">
+  <img class="center" *ngIf="actor.imdbId === null; else actorContent"
        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-  <ng-template #detailsContent>
+  <ng-template #actorContent>
     <div class="row">
       <div class="col col-md-5 offset-md-2 card">
         <mdb-card-body>
-        <mdb-card-title>
-          <h2>{{details.title}} ({{details.year}})</h2>
-        </mdb-card-title>
+          <mdb-card-title>
+            <h2>{{actor.name}}</h2>
+          </mdb-card-title>
           <mdb-card-text>
-            <p>Director: {{details.director}}</p>
-            <div>Genres:
-              <button *ngFor="let genre of details.genres" type="button" mdbBtn color="primary" size="sm" mdbWavesEffect>
-                {{genre}}
-              </button>
-            </div>
-            <p>Metascore: <button type="button" mdbBtn size="sm" color="amber">{{details.metascore}}</button></p>
-            Actors:
-            <div class="col col-md-7">
-              <ul class="list-group" *ngFor="let actor of details.actors">
-                <li class="list-group-item padding-5" mdbWavesEffect><a [routerLink]="['/actor/' + actor.imdbId]">{{actor.name}}</a></li>
-              </ul>
-            </div>
+            <p>Birthday: {{actor.birthday | date}}</p>
+            <p>Gender: {{actor.gender}}</p>
+            <p>Country: {{actor.country}}</p>
           </mdb-card-text>
-          </mdb-card-body>
+        </mdb-card-body>
       </div>
-      <div class="col col-md-2"><img [src]="details.posterUrl" [alt]="details.title">
+      <div class="col col-md-2"><img [src]="actor.photoUrl" [alt]="actor.name">
       </div>
     </div>
   </ng-template>

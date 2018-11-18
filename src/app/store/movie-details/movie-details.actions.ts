@@ -39,4 +39,4 @@ export class Clear implements Action {
 
 }
 
-export type MovieDetailsAction = GetMovieDetails | GotMovieDetails | GotError | Clear;
+export type MovieDetailsActions = GetMovieDetails | GotMovieDetails | GotError | Clear;

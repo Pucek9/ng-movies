@@ -1,6 +1,6 @@
 import {async, TestBed} from '@angular/core/testing';
 
-import {MoviesService} from './movies.service';
+import {ActorsService} from './actors.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {AuthenticationService} from './authentication.service';
 
@@ -16,7 +16,7 @@ describe('ActorsService', () => {
   }));
 
   it('should be created', () => {
-    const service: MoviesService = TestBed.get(MoviesService);
+    const service: ActorsService = TestBed.get(ActorsService);
     expect(service).toBeTruthy();
   });
 });

@@ -2,7 +2,7 @@ import {MovieDetailsState, initializeMovieDetailsState} from './movie-details.st
 import * as MovieDetailsAction from './movie-details.actions';
 import {createSelector} from '@ngrx/store';
 
-export type Action = MovieDetailsAction.MovieDetailsAction;
+export type Action = MovieDetailsAction.MovieDetailsActions;
 
 const defaultState: MovieDetailsState = initializeMovieDetailsState();
 

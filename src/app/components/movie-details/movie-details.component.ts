@@ -1,7 +1,7 @@
 import {Component, OnDestroy} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import * as movieDetailsActions from '../../store/movie-details/movie-details.actions';
 import {select, Store} from '@ngrx/store';
+
+import * as movieDetailsActions from '../../store/movie-details/movie-details.actions';
 import {MoviesState} from '../../store/movies/movies.state';
 import {getMovieDetailsSelector} from '../../store/movie-details/movie-details.reducer';
 
@@ -15,7 +15,6 @@ export class MovieDetailsComponent implements OnDestroy {
   public details$ = this.store$.pipe(select(getMovieDetailsSelector));
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private store$: Store<MoviesState>,
   ) {
   }
