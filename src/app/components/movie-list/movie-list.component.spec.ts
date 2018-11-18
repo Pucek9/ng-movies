@@ -19,12 +19,12 @@ describe('MovieListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, FormsModule],
       declarations: [MovieListComponent, DataGridComponent, PaginationComponent, MdbIconComponent],
       providers: [
         {provide: MoviesService, useValue: {getAll: () => of([])}},
         {provide: Store, useValue: new MockStore(initializeRootState())},
-        HttpClient, HttpHandler, FormsModule]
+        HttpClient, HttpHandler]
     })
       .compileComponents();
   }));

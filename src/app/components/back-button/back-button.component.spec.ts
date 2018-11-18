@@ -1,5 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {Location} from '@angular/common';
+import {APP_BASE_HREF, Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {RouterModule} from '@angular/router';
 
 import {BackButtonComponent} from './back-button.component';
 import {MdbIconComponent} from 'angular-bootstrap-md';
@@ -10,8 +11,12 @@ describe('BackButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [],
-      providers: [Location],
+      imports: [RouterModule],
+      providers: [
+        Location,
+        { provide: LocationStrategy, useClass: PathLocationStrategy },
+        { provide: APP_BASE_HREF, useValue: '/my/app'}
+      ],
       declarations: [BackButtonComponent, MdbIconComponent]
     })
       .compileComponents();

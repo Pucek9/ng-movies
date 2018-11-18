@@ -13,10 +13,6 @@ export class ActorsService {
   ) {
   }
 
-  getAll(params, user) {
-    return this.http.get(`${environment.apiURL}/actor`, {headers: prepareCommonHeaders(user), params});
-  }
-
   getById(imdbId: string, user) {
     return this.http.get(`${environment.apiURL}/actor/${imdbId}`, {headers: prepareCommonHeaders(user)});
   }

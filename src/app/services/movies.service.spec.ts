@@ -2,14 +2,12 @@ import {async, TestBed} from '@angular/core/testing';
 
 import {MoviesService} from './movies.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
-import {AuthenticationService} from './authentication.service';
 
-describe('ActorsService', () => {
+describe('MoviesService', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
-        {provide: AuthenticationService, useValue: {currentUserValue: {}}},
-        HttpClient, HttpHandler,
+       HttpClient, HttpHandler,
       ],
     })
       .compileComponents();

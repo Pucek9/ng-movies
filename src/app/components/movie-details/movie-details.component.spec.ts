@@ -3,10 +3,13 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MovieDetailsComponent} from './movie-details.component';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient, HttpHandler} from '@angular/common/http';
-import {MoviesService} from '../../services';
 import {of} from 'rxjs';
 import {BackButtonComponent} from '../back-button';
-import {MdbCardBodyComponent, MdbCardTextComponent, MdbCardTitleComponent} from 'angular-bootstrap-md';
+import {MdbCardBodyComponent, MdbCardTextComponent, MdbCardTitleComponent, MdbIconComponent} from 'angular-bootstrap-md';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Store} from '@ngrx/store';
+import {MockStore} from '../../store/mock.store';
+import {initializeRootState} from '../../store/root/root.state';
 
 describe('MovieDetailsComponent', () => {
   let component: MovieDetailsComponent;
@@ -18,10 +21,11 @@ describe('MovieDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MovieDetailsComponent, BackButtonComponent, MdbCardTitleComponent, MdbCardBodyComponent, MdbCardTextComponent],
+      imports: [RouterTestingModule],
+      declarations: [MovieDetailsComponent, BackButtonComponent, MdbCardTitleComponent, MdbCardBodyComponent, MdbCardTextComponent,
+        MdbIconComponent],
       providers: [
-        {provide: ActivatedRoute, useValue: fakeActivatedRoute},
-        {provide: MoviesService, useValue: {getById: () => of({})}},
+        {provide: Store, useValue: new MockStore(initializeRootState())},
         HttpClient, HttpHandler
       ]
     })
