@@ -6,3 +6,4 @@ export * from './movie-list';
 export * from './pagination';
 export * from './data-grid';
 export * from './actor';
+export * from './back-button';

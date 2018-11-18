@@ -19,6 +19,7 @@ import {
   PaginationComponent,
   LoginComponent,
   ActorDetailsComponent,
+  BackButtonComponent,
 } from './components';
 import {AlertService} from './services';
 import {rootReducer} from './store/root/root.reducer';
@@ -35,6 +36,7 @@ import {RootEffects} from './store/root/root.effects';
     DataGridComponent,
     PaginationComponent,
     ActorDetailsComponent,
+    BackButtonComponent,
   ],
   imports: [
     BrowserModule,
