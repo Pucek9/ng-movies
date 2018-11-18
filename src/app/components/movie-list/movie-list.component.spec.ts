@@ -10,6 +10,8 @@ import {Store} from '@ngrx/store';
 import {initializeRootState} from '../../store/root/root.state';
 import {MockStore} from '../../store/mock.store';
 import {PaginationComponent} from '../pagination';
+import {MdbIconComponent} from 'angular-bootstrap-md';
+import {FormsModule} from '@angular/forms';
 
 describe('MovieListComponent', () => {
   let component: MovieListComponent;
@@ -18,11 +20,11 @@ describe('MovieListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [MovieListComponent, DataGridComponent, PaginationComponent],
+      declarations: [MovieListComponent, DataGridComponent, PaginationComponent, MdbIconComponent],
       providers: [
         {provide: MoviesService, useValue: {getAll: () => of([])}},
         {provide: Store, useValue: new MockStore(initializeRootState())},
-        HttpClient, HttpHandler]
+        HttpClient, HttpHandler, FormsModule]
     })
       .compileComponents();
   }));

@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {Location} from '@angular/common';
 
-import { BackButtonComponent } from './back-button.component';
+import {BackButtonComponent} from './back-button.component';
+import {MdbIconComponent} from 'angular-bootstrap-md';
 
 describe('BackButtonComponent', () => {
   let component: BackButtonComponent;
@@ -8,9 +10,11 @@ describe('BackButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BackButtonComponent ]
+      imports: [],
+      providers: [Location],
+      declarations: [BackButtonComponent, MdbIconComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

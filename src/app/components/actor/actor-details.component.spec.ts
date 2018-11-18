@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ActorDetailsComponent } from './actor-details.component';
+import {ActorDetailsComponent} from './actor-details.component';
+import {BackButtonComponent} from '../back-button';
+import {MdbCardBodyComponent, MdbCardTextComponent, MdbCardTitleComponent} from 'angular-bootstrap-md';
 
 describe('ActorDetailsComponent', () => {
   let component: ActorDetailsComponent;
@@ -8,9 +10,9 @@ describe('ActorDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActorDetailsComponent ]
+      declarations: [ActorDetailsComponent, BackButtonComponent, MdbCardTitleComponent, MdbCardTextComponent, MdbCardBodyComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

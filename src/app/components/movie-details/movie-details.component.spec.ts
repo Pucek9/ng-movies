@@ -3,8 +3,10 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MovieDetailsComponent} from './movie-details.component';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient, HttpHandler} from '@angular/common/http';
-import {MoviesService} from '../../services/index';
+import {MoviesService} from '../../services';
 import {of} from 'rxjs';
+import {BackButtonComponent} from '../back-button';
+import {MdbCardBodyComponent, MdbCardTextComponent, MdbCardTitleComponent} from 'angular-bootstrap-md';
 
 describe('MovieDetailsComponent', () => {
   let component: MovieDetailsComponent;
@@ -16,7 +18,7 @@ describe('MovieDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MovieDetailsComponent],
+      declarations: [MovieDetailsComponent, BackButtonComponent, MdbCardTitleComponent, MdbCardBodyComponent, MdbCardTextComponent],
       providers: [
         {provide: ActivatedRoute, useValue: fakeActivatedRoute},
         {provide: MoviesService, useValue: {getById: () => of({})}},

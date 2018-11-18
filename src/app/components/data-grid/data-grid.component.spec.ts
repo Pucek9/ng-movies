@@ -5,6 +5,7 @@ import {Store} from '@ngrx/store';
 import {DataGridComponent} from './data-grid.component';
 import {initializeRootState} from '../../store/root/root.state';
 import {MockStore} from '../../store/mock.store';
+import {MdbIconComponent} from 'angular-bootstrap-md';
 
 
 
@@ -16,7 +17,7 @@ describe('DataGridComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       providers: [{provide: Store, useValue: new MockStore(initializeRootState())}],
-      declarations: [DataGridComponent]
+      declarations: [DataGridComponent, MdbIconComponent]
     })
       .compileComponents();
   }));
