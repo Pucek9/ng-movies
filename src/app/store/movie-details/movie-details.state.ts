@@ -1,4 +1,4 @@
-import {Actor, Movie} from '../../models';
+import {ActorDetailsState} from '../actor-details/actor-details.state';
 
 export interface MovieDetailsState {
   _id: string;
@@ -7,7 +7,7 @@ export interface MovieDetailsState {
   director: string;
   year: number;
   metascore: number;
-  actors: Array<Actor>;
+  actors: Array<ActorDetailsState>;
   posterUrl: string;
 }
 

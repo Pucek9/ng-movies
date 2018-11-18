@@ -1,7 +1,7 @@
-import {Movie} from '../../models';
+import {MovieDetailsState} from '../movie-details/movie-details.state';
 
 export interface MoviesState {
-  collection: Movie[];
+  collection: MovieDetailsState[];
   total: number;
 }
 
