@@ -7,7 +7,7 @@ export const GOT_ERROR = '[Movies] GOT_ERROR';
 
 export class GetMovieList implements Action {
   readonly type = GET_MOVIE_LIST;
-  constructor(public payload: any = null) {
+  constructor() {
   }
 
 }

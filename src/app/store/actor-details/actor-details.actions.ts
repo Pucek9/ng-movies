@@ -10,7 +10,7 @@ export const CLEAR = '[Actor] CLEAR';
 export class GetActorDetails implements Action {
   readonly type = GET_ACTOR_DETAILS;
 
-  constructor(public payload: any = null) {
+  constructor() {
   }
 
 }
@@ -34,7 +34,7 @@ export class GotError implements Action {
 export class Clear implements Action {
   readonly type = CLEAR;
 
-  constructor(public payload: any = null) {
+  constructor() {
   }
 
 }
