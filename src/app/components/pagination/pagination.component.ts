@@ -1,13 +1,14 @@
 import {AfterContentInit, AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {Action, select, Store} from '@ngrx/store';
-import {ParamsState} from '../../store/params/params.state';
 import {combineLatest, Observable, of, Subject, Subscription} from 'rxjs';
-import {paramsSelector} from '../../store/params/params.reducer';
 import {map, switchMap, withLatestFrom} from 'rxjs/operators';
+
+import {ParamsState} from '../../store/params/params.state';
 import * as paramsActions from '../../store/params/params.actions';
 import {generateArrayOfNumbers} from '../../helpers/helpers';
-import {Router} from '@angular/router';
 import {moviesTotalSelector} from '../../store/movies/movies.reducer';
+import {paramsSelector, limitSelector, pageSelector} from '../../store/params/params.selectors';
 
 @Component({
   selector: 'app-pagination',
@@ -20,8 +21,8 @@ export class PaginationComponent implements OnInit, OnDestroy {
   total$: Observable<number> = this.store$.pipe(select(moviesTotalSelector));
   limits: Array<number> = [5, 10, 15];
   params$: Observable<ParamsState> = this.store$.pipe(select(paramsSelector));
-  page$: Observable<number> = this.params$.pipe(map(params => params.page));
-  limit$: Observable<number> = this.params$.pipe(map(params => params.limit));
+  page$: Observable<number> = this.store$.pipe(select(limitSelector));
+  limit$: Observable<number> = this.store$.pipe(select(pageSelector));
   pages$: Observable<number[]> = combineLatest(this.limit$, this.total$).pipe(
     map(([limit, total]: [number, number]) => {
       const numberOfPages = limit === 0 || total === 0 ? 1 : total / limit;
@@ -40,7 +41,6 @@ export class PaginationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.subscriptions.add(this.params$.subscribe((params: ParamsState) => {
       this.selectedLimit = params.limit.toString();
       this.selectedPage = params.page;

@@ -1,11 +1,11 @@
-import {Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 
 import * as paramsActions from '../../store/params/params.actions';
-import {ParamsState} from '../../store/params/params.state';
-import {paramsSelector} from '../../store/params/params.reducer';
+import {ParamsState, sortDirEnum} from '../../store/params/params.state';
+import {paramsSelector, sortDirAscendingSelector} from '../../store/params/params.selectors';
 import {Observable, Subscription} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-grid',
@@ -32,7 +32,7 @@ export class DataGridComponent implements OnInit, OnDestroy {
   sortDir: boolean;
   subscriptions = new Subscription();
   params$: Observable<ParamsState> = this.store$.pipe(select(paramsSelector));
-  sortDir$: Observable<boolean> = this.params$.pipe(map(params => params.sortDir === 1));
+  isSortDirAscending$: Observable<boolean> = this.store$.pipe(select(sortDirAscendingSelector));
 
   constructor(
     private store$: Store<ParamsState>,
@@ -41,8 +41,8 @@ export class DataGridComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.add(
-      this.params$.subscribe(params => {
-        this.sortDir = params.sortDir === 1;
+      this.isSortDirAscending$.subscribe(isSortDirAscending => {
+        this.sortDir = isSortDirAscending;
       })
     );
   }
@@ -61,7 +61,7 @@ export class DataGridComponent implements OnInit, OnDestroy {
 
   public changeSortDir() {
     this.sortDir = !this.sortDir;
-    this.store$.dispatch(new paramsActions.SetSortDir(this.sortDir ? 1 : -1));
+    this.store$.dispatch(new paramsActions.SetSortDir(this.sortDir ? sortDirEnum.ASCENDING : sortDirEnum.DESCENDING));
   }
 
   public changeSortBy(i: number) {

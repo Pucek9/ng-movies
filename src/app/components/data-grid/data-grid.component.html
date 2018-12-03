@@ -5,7 +5,7 @@
       <a *ngIf="isSortable(head)">
       <span *ngIf="isActual(i) | async; else sort">
       <mdb-icon
-        [icon]="'sort-'+(typeElements[i]==='string' ? 'alpha' : 'numeric') +'-'+((sortDir$ | async) ? 'asc' : 'desc')"
+        [icon]="'sort-'+(typeElements[i]==='string' ? 'alpha' : 'numeric') +'-'+((isSortDirAscending$ | async) ? 'asc' : 'desc')"
         (click)="changeSortDir()"></mdb-icon>
       </span>
         <ng-template #sort>

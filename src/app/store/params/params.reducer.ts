@@ -53,7 +53,3 @@ export function paramsReducer(state = defaultState, action: Action) {
 
   }
 }
-
-export const getParamsState = state => state[0].params;
-
-export const paramsSelector = createSelector(getParamsState);
