@@ -14,11 +14,11 @@ export class MoviesService {
   }
 
   getAll(params, user) {
-    return this.http.get(`${environment.apiURL}/movie`, {headers: prepareCommonHeaders(user), params});
+    return this.http.get(`${environment.apiURL}/movies`, {headers: prepareCommonHeaders(user), params});
   }
 
   getById(imdbId: string, user) {
-    return this.http.get(`${environment.apiURL}/movie/${imdbId}`, {headers: prepareCommonHeaders(user)});
+    return this.http.get(`${environment.apiURL}/movies/${imdbId}`, {headers: prepareCommonHeaders(user)});
   }
 
 }

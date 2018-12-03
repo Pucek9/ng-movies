@@ -3,7 +3,7 @@ import {Action, actorDetailsReducer} from './actor-details.reducer';
 import {getActorDetailsSelector} from './actor-details.selectors';
 import {initializeRootState, RootState} from '../root/root.state';
 
-describe('actor details selector', () => {
+describe('actor details selectors', () => {
   let initialState: RootState[];
   beforeEach(() => {
     initialState = [initializeRootState()];

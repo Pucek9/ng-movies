@@ -1,10 +1,10 @@
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Action} from '@ngrx/store';
 import {map} from 'rxjs/operators';
-import {initializeRootState} from './root/root.state';
+import {initializeRootState, RootState} from './root/root.state';
 
-export class MockStore<T> extends BehaviorSubject<T> {
-  constructor(private _initialState: T = initializeRootState()) {
+export class MockStore extends BehaviorSubject<> {
+  constructor(private _initialState: RootState = initializeRootState()) {
     super([_initialState]);
   }
 

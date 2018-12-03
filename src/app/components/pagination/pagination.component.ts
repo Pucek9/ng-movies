@@ -21,8 +21,8 @@ export class PaginationComponent implements OnInit, OnDestroy {
   total$: Observable<number> = this.store$.pipe(select(moviesTotalSelector));
   limits: Array<number> = [5, 10, 15];
   params$: Observable<ParamsState> = this.store$.pipe(select(paramsSelector));
-  page$: Observable<number> = this.store$.pipe(select(limitSelector));
-  limit$: Observable<number> = this.store$.pipe(select(pageSelector));
+  page$: Observable<number> = this.store$.pipe(select(pageSelector));
+  limit$: Observable<number> = this.store$.pipe(select(limitSelector));
   pages$: Observable<number[]> = combineLatest(this.limit$, this.total$).pipe(
     map(([limit, total]: [number, number]) => {
       const numberOfPages = limit === 0 || total === 0 ? 1 : total / limit;

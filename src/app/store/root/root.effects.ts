@@ -11,7 +11,7 @@ import * as paramsActions from '../params/params.actions';
 import * as movieDetailsActions from '../movie-details/movie-details.actions';
 import * as actorDetailsActions from '../actor-details/actor-details.actions';
 import {ParamsState} from '../params/params.state';
-import {paramsSelector} from '../params/params.reducer';
+import {paramsSelector} from '../params/params.selectors';
 import {MoviesState} from '../movies/movies.state';
 import {User} from '../../models';
 import {MovieDetailsState} from '../movie-details/movie-details.state';

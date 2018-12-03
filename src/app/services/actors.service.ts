@@ -14,7 +14,7 @@ export class ActorsService {
   }
 
   getById(imdbId: string, user) {
-    return this.http.get(`${environment.apiURL}/actor/${imdbId}`, {headers: prepareCommonHeaders(user)});
+    return this.http.get(`${environment.apiURL}/actors/${imdbId}`, {headers: prepareCommonHeaders(user)});
   }
 
 }
