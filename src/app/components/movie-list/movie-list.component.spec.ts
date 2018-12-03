@@ -16,14 +16,16 @@ import {FormsModule} from '@angular/forms';
 describe('MovieListComponent', () => {
   let component: MovieListComponent;
   let fixture: ComponentFixture<MovieListComponent>;
+  let mockStore;
 
   beforeEach(async(() => {
+    mockStore = new MockStore();
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, FormsModule],
       declarations: [MovieListComponent, DataGridComponent, PaginationComponent, MdbIconComponent],
       providers: [
         {provide: MoviesService, useValue: {getAll: () => of([])}},
-        {provide: Store, useValue: new MockStore(initializeRootState())},
+        {provide: Store, useValue: mockStore},
         HttpClient, HttpHandler]
     })
       .compileComponents();

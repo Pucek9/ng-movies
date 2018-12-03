@@ -11,8 +11,10 @@ import {initializeRootState} from '../../store/root/root.state';
 describe('ActorDetailsComponent', () => {
   let component: ActorDetailsComponent;
   let fixture: ComponentFixture<ActorDetailsComponent>;
+  let mockStore;
 
   beforeEach(async(() => {
+    mockStore = new MockStore();
     TestBed.configureTestingModule({
       declarations: [ActorDetailsComponent, BackButtonComponent, MdbCardTitleComponent, MdbCardTextComponent,
         MdbCardBodyComponent, MdbIconComponent],
@@ -20,8 +22,7 @@ describe('ActorDetailsComponent', () => {
         Location,
         {provide: LocationStrategy, useClass: PathLocationStrategy},
         {provide: APP_BASE_HREF, useValue: '/my/app'},
-        {provide: Store, useValue: new MockStore(initializeRootState())}
-        ,
+        {provide: Store, useValue: mockStore},
       ]
     })
       .compileComponents();

@@ -41,7 +41,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
 
   private loadAllMovies() {
     this.movies$ = this.store$.pipe(select(moviesCollectionSelector));
-    this.total$ = this.store$.pipe(select(moviesTotalSelector));
   }
 
 }

@@ -40,7 +40,3 @@ export function actorDetailsReducer(state = defaultState, action: Action) {
   }
 
 }
-
-export const getActorDetailsState = state => state[0].actorDetails;
-
-export const getActorDetailsSelector = createSelector(getActorDetailsState);

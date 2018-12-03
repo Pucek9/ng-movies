@@ -1,7 +1,7 @@
 import {Component, OnDestroy} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 
-import {getActorDetailsSelector} from '../../store/actor-details/actor-details.reducer';
+import {getActorDetailsSelector} from '../../store/actor-details/actor-details.selectors';
 import * as actorDetailsActions from '../../store/actor-details/actor-details.actions';
 import {ActorDetailsState} from '../../store/actor-details/actor-details.state';
 import {environment} from '../../../environments/environment';

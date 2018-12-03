@@ -18,14 +18,15 @@ describe('MovieDetailsComponent', () => {
     ...new ActivatedRoute(),
     params: of({imdbId: 'test'})
   } as ActivatedRoute;
-
+  let mockStore;
   beforeEach(async(() => {
+    mockStore = new MockStore();
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [MovieDetailsComponent, BackButtonComponent, MdbCardTitleComponent, MdbCardBodyComponent, MdbCardTextComponent,
         MdbIconComponent],
       providers: [
-        {provide: Store, useValue: new MockStore(initializeRootState())},
+        {provide: Store, useValue: mockStore},
         HttpClient, HttpHandler
       ]
     })
