@@ -1,6 +1,6 @@
-import {paramsReducer, Action} from './params.reducer';
+import {Action, paramsReducer} from './params.reducer';
 import * as paramsActions from './params.actions';
-import {ParamsState, initializeParamsState} from './params.state';
+import {initializeParamsState, ParamsState, sortByEnum, sortDirEnum} from './params.state';
 
 describe('ParamsReducer', () => {
 
@@ -20,8 +20,8 @@ describe('ParamsReducer', () => {
       const expectedState: ParamsState = {
         limit: 2,
         page: 1,
-        sortBy: 'title',
-        sortDir: 1
+        sortBy: sortByEnum.TITLE,
+        sortDir: sortDirEnum.ASCENDING
       };
       const action: paramsActions.SetLimit = {type: paramsActions.SET_LIMIT, payload: 2};
       const state = paramsReducer(initialState, action);
@@ -35,10 +35,10 @@ describe('ParamsReducer', () => {
       const expectedState: ParamsState = {
         limit: 0,
         page: 1,
-        sortBy: 'year',
-        sortDir: 1
+        sortBy: sortByEnum.YEAR,
+        sortDir: sortDirEnum.ASCENDING
       };
-      const action: paramsActions.SetSortBy = {type: paramsActions.SET_SORT_BY, payload: 'year'};
+      const action: paramsActions.SetSortBy = {type: paramsActions.SET_SORT_BY, payload: sortByEnum.YEAR};
       const state = paramsReducer(initialState, action);
 
       expect(state).toEqual(expectedState);
@@ -50,8 +50,8 @@ describe('ParamsReducer', () => {
       const expectedState: ParamsState = {
         limit: 0,
         page: 3,
-        sortBy: 'title',
-        sortDir: 1
+        sortBy: sortByEnum.TITLE,
+        sortDir: sortDirEnum.ASCENDING
       };
       const action: paramsActions.SetPage = {type: paramsActions.SET_PAGE, payload: 3};
       const state = paramsReducer(initialState, action);
@@ -65,10 +65,10 @@ describe('ParamsReducer', () => {
       const expectedState: ParamsState = {
         limit: 0,
         page: 1,
-        sortBy: 'title',
-        sortDir: -1
+        sortBy: sortByEnum.TITLE,
+        sortDir: sortDirEnum.DESCENDING
       } as ParamsState;
-      const action: paramsActions.SetSortDir = {type: paramsActions.SET_SORT_DIR, payload: -1};
+      const action: paramsActions.SetSortDir = {type: paramsActions.SET_SORT_DIR, payload: sortDirEnum.DESCENDING};
       const state = paramsReducer(initialState, action);
 
       expect(state).toEqual(expectedState);
