@@ -1,14 +1,11 @@
-import {AfterContentInit, AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Action, select, Store} from '@ngrx/store';
-import {combineLatest, Observable, of, Subject, Subscription} from 'rxjs';
-import {map, switchMap, withLatestFrom} from 'rxjs/operators';
+import {select, Store} from '@ngrx/store';
+import {Observable, Subscription} from 'rxjs';
 
 import {ParamsState} from '../../store/params/params.state';
 import * as paramsActions from '../../store/params/params.actions';
-import {generateArrayOfNumbers} from '../../helpers/helpers';
-import {moviesTotalSelector} from '../../store/movies/movies.selectors';
-import {paramsSelector, limitSelector, pageSelector} from '../../store/params/params.selectors';
+import {paramsSelector, pageSelector} from '../../store/params/params.selectors';
 import {pagesListSelector} from '../../store/root/root.selectors';
 
 @Component({
