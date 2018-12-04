@@ -1,24 +1,14 @@
-import {combineReducers} from '@ngrx/store';
+import {generateArrayOfNumbers} from '../../helpers/helpers';
 
-import * as RootActions from './root.actions';
-import {RootState, initializeRootState} from './root.state';
-import {paramsReducer} from '../params/params.reducer';
-import {moviesReducer} from '../movies/movies.reducer';
-import {movieDetailsReducer} from '../movie-details/movie-details.reducer';
-import {actorDetailsReducer} from '../actor-details/actor-details.reducer';
+import {createSelector} from '@ngrx/store';
+import {limitSelector} from '../params/params.selectors';
+import {moviesTotalSelector} from '../movies/movies.selectors';
 
-export type Action = RootActions.RootActions;
-
-const defaultState: RootState = initializeRootState();
-const reducers = {
-  params: paramsReducer,
-  movies: moviesReducer,
-  movieDetails: movieDetailsReducer,
-  actorDetails: actorDetailsReducer,
-};
-
-export function rootReducer(state = defaultState, action: Action) {
-  console.log('rootReducer', state, action);
-  return combineReducers(reducers)(state, action);
-
-}
+export const pagesListSelector = createSelector(
+  limitSelector,
+  moviesTotalSelector,
+  (limit: number, total: number) => {
+    const numberOfPages = limit === 0 || total === 0 ? 1 : total / limit;
+    return generateArrayOfNumbers(Math.ceil(numberOfPages));
+  }
+);

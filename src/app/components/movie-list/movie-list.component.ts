@@ -4,7 +4,7 @@ import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {MoviesState} from '../../store/movies/movies.state';
 import * as paramsActions from '../../store/params/params.actions';
-import {moviesCollectionSelector, moviesTotalSelector} from '../../store/movies/movies.reducer';
+import {moviesCollectionSelector, moviesTotalSelector} from '../../store/movies/movies.selectors';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({

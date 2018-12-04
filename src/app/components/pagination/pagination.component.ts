@@ -7,8 +7,9 @@ import {map, switchMap, withLatestFrom} from 'rxjs/operators';
 import {ParamsState} from '../../store/params/params.state';
 import * as paramsActions from '../../store/params/params.actions';
 import {generateArrayOfNumbers} from '../../helpers/helpers';
-import {moviesTotalSelector} from '../../store/movies/movies.reducer';
+import {moviesTotalSelector} from '../../store/movies/movies.selectors';
 import {paramsSelector, limitSelector, pageSelector} from '../../store/params/params.selectors';
+import {pagesListSelector} from '../../store/root/root.selectors';
 
 @Component({
   selector: 'app-pagination',
@@ -18,17 +19,11 @@ import {paramsSelector, limitSelector, pageSelector} from '../../store/params/pa
 export class PaginationComponent implements OnInit, OnDestroy {
 
   subscriptions = new Subscription();
-  total$: Observable<number> = this.store$.pipe(select(moviesTotalSelector));
   limits: Array<number> = [5, 10, 15];
   params$: Observable<ParamsState> = this.store$.pipe(select(paramsSelector));
+  pages$: Observable<number[]> = this.store$.pipe(select(pagesListSelector));
   page$: Observable<number> = this.store$.pipe(select(pageSelector));
-  limit$: Observable<number> = this.store$.pipe(select(limitSelector));
-  pages$: Observable<number[]> = combineLatest(this.limit$, this.total$).pipe(
-    map(([limit, total]: [number, number]) => {
-      const numberOfPages = limit === 0 || total === 0 ? 1 : total / limit;
-      return generateArrayOfNumbers(Math.ceil(numberOfPages));
-    })
-  );
+
   selectedLimit: string;
   selectedPage: number;
   pages: number[];
